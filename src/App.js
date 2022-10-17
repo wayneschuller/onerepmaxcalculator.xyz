@@ -12,13 +12,26 @@ import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Unstable_Grid2';
 
+// Taken from https://mui.com/material-ui/react-grid2/
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
+// Main e1rm calculator app
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        E1RM Calculator
       </header>
 
       <E1RMCalculator />
@@ -30,7 +43,7 @@ const E1RMCalculator = () => {
   const [reps, setReps] = useState(5);
   const [weight, setWeight] = useState(225);
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+  const handleRepsSliderChange = (event: Event, newValue: number | number[]) => {
     setReps(newValue);
   };
 
@@ -40,11 +53,37 @@ const E1RMCalculator = () => {
 
   return (
     <div>
-    <Stack spacing={3}>
-      <Reps value={reps} onChange={handleSliderChange} />
-      <Weight value={weight} onChange={handleWeightSliderChange}/>
-      <Result value={estimateE1RM(reps, weight)} />
-    </Stack>
+    <Grid container spacing={2}>
+
+      <Grid xs={12}>
+        <img src={logo} className="App-logo" alt="logo" />
+      </Grid>
+
+      <Grid xs={2}>
+        Reps:
+      </Grid>
+      <Grid xs={8}>
+        <Reps value={reps} onChange={handleRepsSliderChange} />
+      </Grid>
+      <Grid xs={2}>
+        {reps} 
+      </Grid>
+
+      <Grid xs={2}>
+        Weight:
+      </Grid>
+      <Grid xs={8}>
+        <Weight value={weight} onChange={handleWeightSliderChange}/>
+      </Grid>
+      <Grid xs={2}>
+        {weight} 
+      </Grid>
+
+      <Grid xs={12}>
+        <Result value={estimateE1RM(reps, weight)} />
+      </Grid>
+
+    </Grid>
     </div>
   );
 }
@@ -53,7 +92,6 @@ const E1RMCalculator = () => {
 const Reps = (props) => {
   return (
     <div>
-    <NumbersIcon /> 
     <Slider 
       aria-label="Reps" 
       value={props.value} 
@@ -61,7 +99,7 @@ const Reps = (props) => {
       max={20}
       onChange={props.onChange} 
       aria-label="Default" 
-      valueLabelDisplay="on" 
+      valueLabelDisplay="auto" 
     />
     </div>
   );
@@ -77,7 +115,7 @@ const Weight = (props) => {
       max={700}
       onChange={props.onChange} 
       aria-label="Default" 
-      valueLabelDisplay="on" 
+      valueLabelDisplay="auto" 
     />
   );
 }

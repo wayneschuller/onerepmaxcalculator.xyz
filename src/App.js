@@ -2,13 +2,25 @@ import logo from './rogue_plate.png';
 import './App.css';
 import { useState } from 'react';
 
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import Slider from '@mui/material/Slider';
+import NumbersIcon from '@mui/icons-material/Numbers';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-      <E1RMCalculator />
       </header>
+
+      <E1RMCalculator />
     </div>
   );
 }
@@ -17,24 +29,18 @@ const E1RMCalculator = () => {
   const [reps, setReps] = useState(5);
   const [weight, setWeight] = useState(225);
 
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setReps(newValue);
+  };
 
-  // Process changes for calculator inputs
-  const handleChange = (event) => {
-    // console.log(`handleChange: ${event.target.value} id: ${event.target.id}`);
-
-    if (event.target.id === 'repsInput' && event.target.value > 0) {
-       setReps(event.target.value);
-    }
-
-    if (event.target.id === 'weightInput' && event.target.value > 0) {
-      setWeight(event.target.value);
-    }
+  const handleWeightSliderChange = (event: Event, newValue: number | number[]) => {
+    setWeight(newValue);
   };
 
   return (
     <div>
-      <Reps value={reps} onChange={handleChange} />
-      <Weight value={weight} onChange={handleChange}/>
+      <Reps value={reps} onChange={handleSliderChange} />
+      <Weight value={weight} onChange={handleWeightSliderChange}/>
       <Result value={estimateE1RM(reps, weight)} /> 
     </div>
   );
@@ -44,7 +50,15 @@ const E1RMCalculator = () => {
 const Reps = (props) => {
   return (
     <div>
-      <label>Reps:</label><input id="repsInput" type="number" value={props.value} onChange={props.onChange}></input>
+    <NumbersIcon /> <Slider 
+      aria-label="Reps" 
+      value={props.value} 
+      min={1}
+      max={20}
+      onChange={props.onChange} 
+      aria-label="Default" 
+      valueLabelDisplay="on" 
+    />
     </div>
   );
 }
@@ -52,9 +66,15 @@ const Reps = (props) => {
 // Weight input component
 const Weight = (props) => {
   return (
-    <div>
-      <label>Weight:</label><input id="weightInput" type="number" value={props.value} onChange={props.onChange}></input>
-    </div>
+    <Slider 
+      aria-label="Weight" 
+      value={props.value} 
+      min={1}
+      max={700}
+      onChange={props.onChange} 
+      aria-label="Default" 
+      valueLabelDisplay="on" 
+    />
   );
 }
 

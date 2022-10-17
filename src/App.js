@@ -126,7 +126,7 @@ const Result = (props) => {
 
   return (
     <div>
-      <label><b>Estaimated One Rep Max: {E1RM}</b></label>
+      <label><h2>Estimated One Rep Max: {E1RM}</h2></label>
     </div>
   );
 }

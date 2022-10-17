@@ -9,6 +9,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import Slider from '@mui/material/Slider';
+import Stack from '@mui/material/Stack';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
@@ -39,9 +40,11 @@ const E1RMCalculator = () => {
 
   return (
     <div>
+    <Stack spacing={3}>
       <Reps value={reps} onChange={handleSliderChange} />
       <Weight value={weight} onChange={handleWeightSliderChange}/>
-      <Result value={estimateE1RM(reps, weight)} /> 
+      <Result value={estimateE1RM(reps, weight)} />
+    </Stack>
     </div>
   );
 }
@@ -50,7 +53,8 @@ const E1RMCalculator = () => {
 const Reps = (props) => {
   return (
     <div>
-    <NumbersIcon /> <Slider 
+    <NumbersIcon /> 
+    <Slider 
       aria-label="Reps" 
       value={props.value} 
       min={1}

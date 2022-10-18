@@ -57,11 +57,17 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
+  // Called when they click on one of the 'lb' or 'kg' chips to change units
   const onUnitClick = (event) => {
-    if (isMetric) 
+    if (isMetric) {
+      // Going from kg to lb
+      setWeight(Math.round(weight * 2.2046)); 
       setMetric(false);
-    else
+    } else {
+      // Going from lb to kg 
+      setWeight(Math.round(weight / 2.2046)); 
       setMetric(true);
+    }
   };
 
   return (

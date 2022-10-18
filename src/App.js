@@ -109,7 +109,6 @@ const Reps = (props) => {
       min={1}
       max={20}
       onChange={props.onChange} 
-      aria-label="Default" 
       valueLabelDisplay="auto" 
     />
     </div>
@@ -118,15 +117,12 @@ const Reps = (props) => {
 
 // Weight input component
 const Weight = (props) => {
-  let units = "lb";
-  let min = 1;
   let max = 600;
   let step = 1;  
 
   if (props.isMetric) {
     max = 250;
     step = 0.5;
-    units = "kg";
   }
 
   return (
@@ -137,7 +133,6 @@ const Weight = (props) => {
       max={max}
       step={step}
       onChange={props.onChange} 
-      aria-label="Default" 
       valueLabelDisplay="auto" 
     />
   );

@@ -84,11 +84,11 @@ const E1RMCalculator = () => {
         {weight}{isMetric ? 'kg' : 'lb'}
       </Grid>
 
-      <Grid xs={3}> </Grid>
-      <Grid xs={6}>
-        <Result reps={reps} weight={weight} isMetric={isMetric} />
+      <Grid xs={2} md={3}> </Grid>
+      <Grid xs={8} md={6}>
+        <Item elevation={4}><h2>Estimated One Rep Max: {estimateE1RM(reps, weight, "Brzycki")}{isMetric ? 'kg' : 'lb'}</h2> (Brzycki formula)</Item>
       </Grid>
-      <Grid xs={3}>
+      <Grid xs={2} md={3}>
         <Chip label="lb" size="small" color={isMetric ? "default" : "primary"} onClick={onUnitClick} />
         <Chip label="kg" size="small" color={isMetric ? "primary" : "default"} onClick={onUnitClick} />
       </Grid>
@@ -154,20 +154,6 @@ const Weight = (props) => {
       onChange={props.onChange} 
       valueLabelDisplay="auto" 
     />
-  );
-}
-
-// e1rm Result component
-const Result = (props) => {
-  const reps = props.reps;
-  const weight = props.weight;
-  const units = props.isMetric ? "kg" : "lb";
-  const E1RM = estimateE1RM(reps, weight);
-
-  return (
-    <div>
-      <Item elevation={4}><h2>Estimated One Rep Max: {E1RM}{units}</h2> (Brzycki formula)</Item>
-    </div>
   );
 }
 

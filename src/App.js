@@ -41,11 +41,11 @@ const E1RMCalculator = () => {
   const [weight, setWeight] = useState(225);
   const [isMetric, setMetric] = useState(false);
 
-  const handleRepsSliderChange = (event: Event, newValue: number | number[]) => {
+  const handleRepsSliderChange = (event, newValue) => {
     setReps(newValue);
   };
 
-  const handleWeightSliderChange = (event: Event, newValue: number | number[]) => {
+  const handleWeightSliderChange = (event, newValue) => {
     setWeight(newValue);
   };
 
@@ -156,6 +156,8 @@ const Weight = (props) => {
     />
   );
 }
+
+
 
 // Return a rounded 1 rep max
 // For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum

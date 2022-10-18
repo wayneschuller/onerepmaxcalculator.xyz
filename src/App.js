@@ -9,12 +9,9 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import Slider from '@mui/material/Slider';
-import Stack from '@mui/material/Stack';
-import NumbersIcon from '@mui/icons-material/Numbers';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
 
 // Taken from https://mui.com/material-ui/react-grid2/
@@ -42,6 +39,7 @@ function App() {
 const E1RMCalculator = () => {
   const [reps, setReps] = useState(5);
   const [weight, setWeight] = useState(225);
+  const [isMetric, setMetric] = useState(false);
 
   const handleRepsSliderChange = (event: Event, newValue: number | number[]) => {
     setReps(newValue);
@@ -49,6 +47,13 @@ const E1RMCalculator = () => {
 
   const handleWeightSliderChange = (event: Event, newValue: number | number[]) => {
     setWeight(newValue);
+  };
+
+  const onUnitClick = (event) => {
+    if (isMetric) 
+      setMetric(false);
+    else
+      setMetric(true);
   };
 
   return (
@@ -73,14 +78,19 @@ const E1RMCalculator = () => {
         Weight:
       </Grid>
       <Grid xs={8}>
-        <Weight value={weight} onChange={handleWeightSliderChange}/>
+        <Weight value={weight} isMetric={isMetric} onChange={handleWeightSliderChange}/>
       </Grid>
       <Grid xs={2}>
-        {weight} 
+        {weight}{isMetric ? 'kg' : 'lb'}
       </Grid>
 
-      <Grid xs={12}>
-        <Result value={estimateE1RM(reps, weight)} />
+      <Grid xs={3}> </Grid>
+      <Grid xs={6}>
+        <Result reps={reps} weight={weight} isMetric={isMetric} />
+      </Grid>
+      <Grid xs={3}>
+        <Chip label="lb" size="small" color={isMetric ? "default" : "primary"} onClick={onUnitClick} />
+        <Chip label="kg" size="small" color={isMetric ? "primary" : "default"} onClick={onUnitClick} />
       </Grid>
 
     </Grid>
@@ -90,6 +100,7 @@ const E1RMCalculator = () => {
 
 // Reps input component
 const Reps = (props) => {
+  
   return (
     <div>
     <Slider 
@@ -107,12 +118,24 @@ const Reps = (props) => {
 
 // Weight input component
 const Weight = (props) => {
+  let units = "lb";
+  let min = 1;
+  let max = 600;
+  let step = 1;  
+
+  if (props.isMetric) {
+    max = 250;
+    step = 0.5;
+    units = "kg";
+  }
+
   return (
     <Slider 
       aria-label="Weight" 
       value={props.value} 
       min={1}
-      max={700}
+      max={max}
+      step={step}
       onChange={props.onChange} 
       aria-label="Default" 
       valueLabelDisplay="auto" 
@@ -122,11 +145,14 @@ const Weight = (props) => {
 
 // e1rm Result component
 const Result = (props) => {
-  const E1RM = props.value;
+  const reps = props.reps;
+  const weight = props.weight;
+  const units = props.isMetric ? "kg" : "lb";
+  const E1RM = estimateE1RM(reps, weight);
 
   return (
     <div>
-      <label><h2>Estimated One Rep Max: {E1RM}</h2></label>
+      <Item elevation={4}><h2>Estimated One Rep Max: {E1RM}{units}</h2></Item>
     </div>
   );
 }

@@ -103,8 +103,8 @@ const E1RMCalculator = () => {
         <Item elevation={4}><h2>Estimated One Rep Max: {estimateE1RM(reps, weight, "Brzycki")}{isMetric ? 'kg' : 'lb'}</h2> (Brzycki formula)</Item>
       </Grid>
       <Grid xs={2} md={3}>
-        <Chip label="lb" size="small" color={isMetric ? "default" : "primary"} onClick={onUnitClick} />
-        <Chip label="kg" size="small" color={isMetric ? "primary" : "default"} onClick={onUnitClick} />
+        <Chip label="lb" color={isMetric ? "default" : "primary"} onClick={onUnitClick} />
+        <Chip label="kg" color={isMetric ? "primary" : "default"} onClick={onUnitClick} />
       </Grid>
 
       <Grid xs={6} md={2}> 

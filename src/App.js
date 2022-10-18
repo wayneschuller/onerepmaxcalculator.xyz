@@ -93,6 +93,25 @@ const E1RMCalculator = () => {
         <Chip label="kg" size="small" color={isMetric ? "primary" : "default"} onClick={onUnitClick} />
       </Grid>
 
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>Epley: {estimateE1RM(reps, weight, "Epley")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>McGlothin: {estimateE1RM(reps, weight, "McGlothin")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>Lombardi: {estimateE1RM(reps, weight, "Lombardi")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>Mayhew: {estimateE1RM(reps, weight, "Mayhew")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>OConner: {estimateE1RM(reps, weight, "OConner")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+      <Grid xs={6} md={2}> 
+        <Item elevation={4}>Wathen: {estimateE1RM(reps, weight, "Wathen")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+
     </Grid>
     </div>
   );
@@ -147,7 +166,7 @@ const Result = (props) => {
 
   return (
     <div>
-      <Item elevation={4}><h2>Estimated One Rep Max: {E1RM}{units}</h2></Item>
+      <Item elevation={4}><h2>Estimated One Rep Max: {E1RM}{units}</h2> (Brzycki formula)</Item>
     </div>
   );
 }

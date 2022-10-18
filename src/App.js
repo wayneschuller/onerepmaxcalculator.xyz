@@ -46,15 +46,15 @@ const E1RMCalculator = () => {
   };
 
   const handleWeightSliderChange = (event, newValue) => {
-
     let newWeight = newValue;
 
     if (isMetric) {
       newWeight = 2.5 * Math.ceil(newWeight/2.5);  // For kg only allow nice multiples of 2.5kg
-    } 
+    } else {
+      newWeight = 5 * Math.ceil(newWeight/5);  // For lb only allow nice multiples of 5lb
+    }
 
     setWeight(newWeight);
-
   };
 
   const onUnitClick = (event) => {

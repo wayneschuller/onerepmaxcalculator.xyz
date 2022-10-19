@@ -1,7 +1,7 @@
 import logo from './rogue_plate.png';
 import './App.css';
 import { useState } from 'react';
-
+import { useCookies } from 'react-cookie';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -13,6 +13,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
+
 
 // Taken from https://mui.com/material-ui/react-grid2/
 const Item = styled(Paper)(({ theme }) => ({
@@ -37,9 +38,21 @@ function App() {
 }
 
 const E1RMCalculator = () => {
+
+  const [cookies, setCookie] = useCookies(['isMetric']);
+
+  // If they don't have a units cookie - default to lb
+  // if (cookies.isMetric === undefined) {
+    // console.log(`cookie.isMetric is undefined, let's set it as false`);
+    // let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
+    // setCookie('isMetric', false, { path: '/', expires: d });
+  // }
+
   const [reps, setReps] = useState(5);
   const [weight, setWeight] = useState(225);
-  const [isMetric, setMetric] = useState(false);
+  const [isMetric, setMetric] = useState(cookies.isMetric);
+
+  console.log(`rendering cookies.isMetric: ${cookies.isMetric} and isMetric state is: ${isMetric}`);
 
   const handleRepsSliderChange = (event, newValue) => {
     setReps(newValue);
@@ -62,17 +75,25 @@ const E1RMCalculator = () => {
     if (isMetric) {
       // Going from kg to lb
       setWeight(Math.round(weight * 2.2046)); 
+      
+      let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
+      setCookie('isMetric', false, { path: '/', expires: d });
+
       setMetric(false);
     } else {
       // Going from lb to kg 
       setWeight(Math.round(weight / 2.2046)); 
+
+      let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
+      setCookie('isMetric', true, { path: '/', expires: d });
+
       setMetric(true);
     }
   };
 
   return (
     <div>
-    <Grid container spacing={2}>
+    <Grid container spacing={2} display="flex"  justifyContent="center" alignItems="center">
 
       <Grid xs={12}>
         <img src={logo} className="App-logo" alt="logo" />

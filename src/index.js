@@ -5,12 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CookiesProvider } from 'react-cookie';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import color from '@mui/material/colors/indigo';
+
+const theme = createTheme({
+  palette: {
+    primary: color,
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </CookiesProvider>
   </React.StrictMode>
 );

@@ -132,10 +132,10 @@ const E1RMCalculator = () => {
         <Item elevation={4}>Lombardi: {estimateE1RM(reps, weight, "Lombardi")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>Mayhew: {estimateE1RM(reps, weight, "Mayhew")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={4}>Mayhew et al.: {estimateE1RM(reps, weight, "Mayhew")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>OConner: {estimateE1RM(reps, weight, "OConner")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={4}>O'Conner et al.: {estimateE1RM(reps, weight, "OConner")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
         <Item elevation={4}>Wathen: {estimateE1RM(reps, weight, "Wathen")}{isMetric ? 'kg' : 'lb'}</Item>

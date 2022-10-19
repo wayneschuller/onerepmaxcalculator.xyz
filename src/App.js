@@ -1,6 +1,6 @@
 import logo from './rogue_plate.png';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 import '@fontsource/roboto/300.css';
@@ -39,13 +39,24 @@ function App() {
 
 const E1RMCalculator = () => {
 
-  const [cookies, setCookie] = useCookies(['isMetric']);
+  const [cookies, setCookie] = useCookies(['reps', 'weight', 'isMetric']);
 
-  const [reps, setReps] = useState(5);
-  const [weight, setWeight] = useState(225);
-  const [isMetric, setMetric] = useState(cookies.isMetric === "true"); 
+  // Get some initial values from any cookies.
+  let initReps = (cookies.reps === undefined) ? 5 : parseInt(cookies.reps);
+  let initWeight = (cookies.weight === undefined) ? 225 : parseFloat(cookies.weight);
+  let initIsMetric = (cookies.isMetric === "true"); // boolean is true if string is "true" otherwise false
 
-  console.log(`rendering cookies.isMetric: ${cookies.isMetric} and isMetric state is: ${isMetric}`);
+  const [reps, setReps] = useState(initReps);
+  const [weight, setWeight] = useState(initWeight);
+  const [isMetric, setMetric] = useState(initIsMetric); 
+
+  // Store key variables in cookies so we can default to them next time
+  useEffect(() => {
+    let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
+    setCookie('reps', reps, { path: '/', expires: d });
+    setCookie('weight', weight, { path: '/', expires: d });
+    setCookie('isMetric', isMetric, { path: '/', expires: d });
+  }, [weight, reps, isMetric, setCookie])
 
   const handleRepsSliderChange = (event, newValue) => {
     setReps(newValue);
@@ -68,18 +79,10 @@ const E1RMCalculator = () => {
     if (isMetric) {
       // Going from kg to lb
       setWeight(Math.round(weight * 2.2046)); 
-     
-      let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
-      setCookie('isMetric', false, { path: '/', expires: d });
-
       setMetric(false);
     } else {
       // Going from lb to kg 
       setWeight(Math.round(weight / 2.2046)); 
-
-      let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
-      setCookie('isMetric', true, { path: '/', expires: d });
-
       setMetric(true);
     }
   };
@@ -165,11 +168,9 @@ const Reps = (props) => {
 // Weight input component
 const Weight = (props) => {
   let max = 600;
-  let step = 1;  
 
   if (props.isMetric) {
     max = 250;
-    step = 0.5;
   }
 
   return (
@@ -178,7 +179,6 @@ const Weight = (props) => {
       value={props.value} 
       min={1}
       max={max}
-      step={step}
       onChange={props.onChange} 
       valueLabelDisplay="auto" 
     />

@@ -41,16 +41,9 @@ const E1RMCalculator = () => {
 
   const [cookies, setCookie] = useCookies(['isMetric']);
 
-  // If they don't have a units cookie - default to lb
-  // if (cookies.isMetric === undefined) {
-    // console.log(`cookie.isMetric is undefined, let's set it as false`);
-    // let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
-    // setCookie('isMetric', false, { path: '/', expires: d });
-  // }
-
   const [reps, setReps] = useState(5);
   const [weight, setWeight] = useState(225);
-  const [isMetric, setMetric] = useState(cookies.isMetric);
+  const [isMetric, setMetric] = useState(cookies.isMetric === "true"); 
 
   console.log(`rendering cookies.isMetric: ${cookies.isMetric} and isMetric state is: ${isMetric}`);
 
@@ -75,7 +68,7 @@ const E1RMCalculator = () => {
     if (isMetric) {
       // Going from kg to lb
       setWeight(Math.round(weight * 2.2046)); 
-      
+     
       let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
       setCookie('isMetric', false, { path: '/', expires: d });
 

@@ -8,6 +8,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import Container from '@mui/material/Container';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -27,13 +28,9 @@ const Item = styled(Paper)(({ theme }) => ({
 // Main e1rm calculator app
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        E1RM Calculator
-      </header>
-
+     <Container maxWidth="md">
       <E1RMCalculator />
-    </div>
+    </Container>
   );
 }
 
@@ -92,7 +89,8 @@ const E1RMCalculator = () => {
     <Grid container spacing={2} display="flex"  justifyContent="center" alignItems="center">
 
       <Grid xs={12}>
-        <img src={logo} className="App-logo" alt="logo" />
+        <h2>One Rep Max Calculator</h2>
+        Estimate your max single based on reps and weight (see <a href="https://en.wikipedia.org/wiki/One-repetition_maximum" target="_blank">Wikipedia article</a> for theory)
       </Grid>
 
       <Grid xs={2}>

@@ -16,6 +16,7 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
 import MuiInput from '@mui/material/Input';
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 
 import {
   EmailShareButton,
@@ -24,6 +25,7 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from 'react-share';
+
 import {
   EmailIcon,
   FacebookIcon,
@@ -34,7 +36,7 @@ import {
 
 // This is how they do it in mui samples
 const Input = styled(MuiInput)`
-  width: 5rem;
+  width: 5rem;  // Goal is to have 4 digits in weight input - 3 plus one decimal digit
 `;
 
 // Taken from https://mui.com/material-ui/react-grid2/
@@ -46,12 +48,14 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// Main e1rm calculator app
+// Draw the main app page
 function App() {
   return (
-     <Container maxWidth="md">
-      <E1RMCalculator />
-    </Container>
+    <Box sx={{ m: 3 }} >
+      <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
+        <E1RMCalculator />
+      </Container>
+    </Box>
   );
 }
 
@@ -68,7 +72,7 @@ const E1RMCalculator = () => {
   const [weight, setWeight] = useState(initWeight);
   const [isMetric, setMetric] = useState(initIsMetric); 
 
-  // Store key variables in cookies so we can default to them next time
+  // useEffect when state changes put key variables in cookies so we can default to them next time
   useEffect(() => {
     let d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000)); // 365 days from now
     setCookie('reps', reps, { path: '/', expires: d });
@@ -116,7 +120,7 @@ const E1RMCalculator = () => {
 
   return (
     <div>
-    <Grid container spacing={2} display="flex"  justifyContent="center" alignItems="center">
+    <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
 
       <Grid xs={12}>
         <h2>One Rep Max Calculator</h2>
@@ -153,37 +157,34 @@ const E1RMCalculator = () => {
       </Grid>
 
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>Epley: {estimateE1RM(reps, weight, "Epley")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>Epley: {estimateE1RM(reps, weight, "Epley")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>McGlothin: {estimateE1RM(reps, weight, "McGlothin")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>McGlothin: {estimateE1RM(reps, weight, "McGlothin")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>Lombardi: {estimateE1RM(reps, weight, "Lombardi")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>Lombardi: {estimateE1RM(reps, weight, "Lombardi")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>Mayhew et al.: {estimateE1RM(reps, weight, "Mayhew")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>Mayhew et al.: {estimateE1RM(reps, weight, "Mayhew")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>O'Conner et al.: {estimateE1RM(reps, weight, "OConner")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>O'Conner et al.: {estimateE1RM(reps, weight, "OConner")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
       <Grid xs={6} md={2}> 
-        <Item elevation={4}>Wathen: {estimateE1RM(reps, weight, "Wathen")}{isMetric ? 'kg' : 'lb'}</Item>
+        <Item elevation={2}>Wathen: {estimateE1RM(reps, weight, "Wathen")}{isMetric ? 'kg' : 'lb'}</Item>
       </Grid>
 
-      <Grid xs={12} md={12}> 
-        <Divider />
-      </Grid>
-      <Grid xs={12} md={12}> 
-      </Grid>
-      <Grid xs={12} md={12}> 
-      </Grid>
+      <Grid xs={12} md={12}> </Grid>
+      <Grid xs={12} md={12}> <Divider /> </Grid>
+      <Grid xs={12} md={12}> </Grid>
+      <Grid xs={12} md={12}> </Grid>
 
       <Grid xs={8} md={8}> 
         Please give us feedback! <a href="mailto:feedback@onerepmaxcalculator.xyz">feedback@onerepmaxcalculator.xyz</a> 
       </Grid>
       <Grid xs={4} md={4}> 
-        Sharing is caring.
+        {/* Sharing is caring. */}
       </Grid>
         
       <Grid xs={8} md={8}> 
@@ -196,6 +197,8 @@ const E1RMCalculator = () => {
         <TwitterShareButton url={url}><TwitterIcon size={32} round /></TwitterShareButton>
         <WhatsappShareButton url={url}><WhatsappIcon size={32} round /></WhatsappShareButton>
       </Grid>
+
+      <Grid xs={12} md={12}> </Grid>
 
     </Grid>
     </div>

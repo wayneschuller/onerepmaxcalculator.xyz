@@ -15,6 +15,8 @@ import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
 import MuiInput from '@mui/material/Input';
+import Divider from '@mui/material/Divider';
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -170,6 +172,7 @@ const E1RMCalculator = () => {
       </Grid>
 
       <Grid xs={12} md={12}> 
+        <Divider />
       </Grid>
       <Grid xs={12} md={12}> 
       </Grid>

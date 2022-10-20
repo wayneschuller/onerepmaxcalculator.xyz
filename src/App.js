@@ -51,7 +51,7 @@ const Item = styled(Paper)(({ theme }) => ({
 // Draw the main app page
 function App() {
   return (
-    <Box sx={{ m: 3 }} >
+    <Box sx={{ m: 1 }} md={{ m: 3}} >
       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
         <E1RMCalculator />
       </Container>

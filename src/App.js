@@ -14,7 +14,11 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
+import MuiInput from '@mui/material/Input';
 
+const Input = styled(MuiInput)`
+  width: 5rem;
+`;
 
 // Taken from https://mui.com/material-ui/react-grid2/
 const Item = styled(Paper)(({ theme }) => ({
@@ -71,6 +75,11 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
+  // User can use the input to set an exact figure, integer or decimal
+  const handleWeightInputChange = (event) => {
+    if (event.target.value) setWeight(event.target.value);
+  }
+
   // Called when they click on one of the 'lb' or 'kg' chips to change units
   const onUnitClick = (event) => {
     if (isMetric) {
@@ -93,24 +102,24 @@ const E1RMCalculator = () => {
         Estimate your max single based on reps and weight (see <a href="https://en.wikipedia.org/wiki/One-repetition_maximum" target="_blank">Wikipedia article</a> for theory)
       </Grid>
 
-      <Grid xs={2}>
+      <Grid xs={2} md={1}>
         Reps:
       </Grid>
-      <Grid xs={8}>
+      <Grid xs={8} md={9}>
         <Reps value={reps} onChange={handleRepsSliderChange} />
       </Grid>
-      <Grid xs={2}>
+      <Grid xs={2} md={2}>
         {reps} 
       </Grid>
 
-      <Grid xs={2}>
+      <Grid xs={12} md={1}>
         Weight:
       </Grid>
-      <Grid xs={8}>
+      <Grid xs={9} md={9}>
         <Weight value={weight} isMetric={isMetric} onChange={handleWeightSliderChange}/>
       </Grid>
-      <Grid xs={2}>
-        {weight}{isMetric ? 'kg' : 'lb'}
+      <Grid xs={3} md={2}>
+        <Input value={weight} size='small' type='number' onChange={handleWeightInputChange} endAdornment={isMetric ? 'kg' : 'lb'} />
       </Grid>
 
       <Grid xs={2} md={3}> </Grid>

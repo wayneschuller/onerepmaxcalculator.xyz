@@ -15,7 +15,22 @@ import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Unstable_Grid2';
 import MuiInput from '@mui/material/Input';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  RedditShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
+import {
+  EmailIcon,
+  FacebookIcon,
+  RedditIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 
+// This is how they do it in mui samples
 const Input = styled(MuiInput)`
   width: 5rem;
 `;
@@ -93,6 +108,10 @@ const E1RMCalculator = () => {
     }
   };
 
+  // Used for share buttons
+  const url = "https://www.onerepmaxcalculator.xyz"; 
+  const title = "Helpful one rep max utility calculator with multiple equations"; 
+
   return (
     <div>
     <Grid container spacing={2} display="flex"  justifyContent="center" alignItems="center">
@@ -148,6 +167,31 @@ const E1RMCalculator = () => {
       </Grid>
       <Grid xs={6} md={2}> 
         <Item elevation={4}>Wathen: {estimateE1RM(reps, weight, "Wathen")}{isMetric ? 'kg' : 'lb'}</Item>
+      </Grid>
+
+      <Grid xs={12} md={12}> 
+      </Grid>
+      <Grid xs={12} md={12}> 
+      </Grid>
+      <Grid xs={12} md={12}> 
+      </Grid>
+
+      <Grid xs={8} md={8}> 
+        Please give us feedback! <a href="mailto:feedback@onerepmaxcalculator.xyz">feedback@onerepmaxcalculator.xyz</a> 
+      </Grid>
+      <Grid xs={4} md={4}> 
+        Sharing is caring.
+      </Grid>
+        
+      <Grid xs={8} md={8}> 
+        May you be harder to kill and more useful in general. 
+      </Grid>
+      <Grid xs={4} md={4}> 
+        <EmailShareButton url={url} subject={title}> <EmailIcon size={32} round /> </EmailShareButton>
+        <FacebookShareButton url={url}><FacebookIcon size={32} round /></FacebookShareButton>
+        <RedditShareButton url={url} title={title}><RedditIcon size={32} round /></RedditShareButton>
+        <TwitterShareButton url={url}><TwitterIcon size={32} round /></TwitterShareButton>
+        <WhatsappShareButton url={url}><WhatsappIcon size={32} round /></WhatsappShareButton>
       </Grid>
 
     </Grid>

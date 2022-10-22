@@ -3,11 +3,6 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
 import Container from '@mui/material/Container';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
@@ -34,7 +29,6 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-// This is how they do it in mui samples
 const Input = styled(MuiInput)`
   width: 5rem;  // Goal is to have 4 digits in weight input - 3 plus one decimal digit
 `;

@@ -181,15 +181,14 @@ const E1RMCalculator = () => {
         {/* Sharing is caring. */}
       </Grid>
         
-      <Grid xs={8} md={8}> 
+      <Grid xs={7} md={9}> 
         May you be harder to kill and more useful in general. 
       </Grid>
-      <Grid xs={4} md={4}> 
+      <Grid xs={5} md={3}> 
         <EmailShareButton url={url} subject={title}> <EmailIcon size={32} round /> </EmailShareButton>
         <FacebookShareButton url={url}><FacebookIcon size={32} round /></FacebookShareButton>
         <RedditShareButton url={url} title={title}><RedditIcon size={32} round /></RedditShareButton>
         <TwitterShareButton url={url}><TwitterIcon size={32} round /></TwitterShareButton>
-        <WhatsappShareButton url={url}><WhatsappIcon size={32} round /></WhatsappShareButton>
       </Grid>
 
       <Grid xs={12} md={12}> </Grid>

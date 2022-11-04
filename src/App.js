@@ -1,4 +1,3 @@
-import logo from './rogue_plate.png';
 import './App.css';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
@@ -18,7 +17,6 @@ import {
   FacebookShareButton,
   RedditShareButton,
   TwitterShareButton,
-  WhatsappShareButton,
 } from 'react-share';
 
 import {
@@ -26,7 +24,6 @@ import {
   FacebookIcon,
   RedditIcon,
   TwitterIcon,
-  WhatsappIcon,
 } from "react-share";
 
 const Input = styled(MuiInput)`
@@ -118,7 +115,7 @@ const E1RMCalculator = () => {
 
       <Grid xs={12}>
         <h2>One Rep Max Calculator</h2>
-        Estimate your max single based on reps and weight (see <a href="https://en.wikipedia.org/wiki/One-repetition_maximum" target="_blank">Wikipedia article</a> for theory)
+        Estimate your max single based on reps and weight (see <a href="https://en.wikipedia.org/wiki/One-repetition_maximum" target="_blank" rel="noreferrer">Wikipedia article</a> for theory)
       </Grid>
 
       <Grid xs={2} md={1}>

@@ -114,7 +114,7 @@ const E1RMCalculator = () => {
     <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
 
       <Grid xs={12}>
-        <h2>One Rep Max Calculator</h2>
+        <h2>E1RM One Rep Max Calculator</h2>
         Estimate your max single based on reps and weight (see <a href="https://en.wikipedia.org/wiki/One-repetition_maximum" target="_blank" rel="noreferrer">Wikipedia article</a> for theory)
       </Grid>
 

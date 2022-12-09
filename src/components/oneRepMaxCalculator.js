@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
-
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';

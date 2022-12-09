@@ -4,8 +4,8 @@ import './App.css';
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-import ResponsiveAppBar from './appBar';
-import OneRepMaxCalculator from './oneRepMaxCalculator';
+import ResponsiveAppBar from './components/appBar';
+import OneRepMaxCalculator from './components/oneRepMaxCalculator';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -32,7 +32,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="visualizer" element={<Visualizer />} />
+          <Route path="analyzer" element={<Analyzer />} />
           <Route path="calculator" element={<Calculator />} />
 
           {/* Using path="*"" means "match anything", so this route
@@ -51,27 +52,6 @@ function Layout() {
 
      <ResponsiveAppBar />
 
-      {/* A "layout route" is a good place to put markup you want to
-          share across all the pages on your site, like navigation. */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/calculator">One Rep Max Calculator</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <hr />
-
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
@@ -83,15 +63,36 @@ function Layout() {
 function Home() {
   return (
     <div>
-      <h2>Home</h2>
+     <Box sx={{ m: 1 }} md={{ m: 3}} >
+       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
+      <h1>Welcome to Strength Journeys</h1>
+      <h3>Visualise your lifting history - lift consistently for a long time.</h3>
+       </Container>
+     </Box>
     </div>
   );
 }
 
-function About() {
+function Visualizer() {
   return (
     <div>
-      <h2>About</h2>
+     <Box sx={{ m: 1 }} md={{ m: 3}} >
+       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
+      <h2>Strength Visualizer</h2>
+       </Container>
+     </Box>
+    </div>
+  );
+}
+
+function Analyzer() {
+  return (
+    <div>
+     <Box sx={{ m: 1 }} md={{ m: 3}} >
+       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
+      <h2>PR Analyzer</h2>
+       </Container>
+     </Box>
     </div>
   );
 }

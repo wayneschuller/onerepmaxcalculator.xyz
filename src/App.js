@@ -1,6 +1,5 @@
 import './App.css';
 
-
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
@@ -9,18 +8,6 @@ import OneRepMaxCalculator from './components/oneRepMaxCalculator';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-
-// export default function App() {
-//   return (
-//     <div>
-//     <Box sx={{ m: 1 }} md={{ m: 3}} >
-//       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
-//         <OneRepMaxCalculator />
-//       </Container>
-//     </Box>
-//     </div>
-//   );
-// }
 
 export default function App() {
   return (

@@ -98,14 +98,14 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link 
-                      style = {{ textDecoration: "none" }}
-                      to={`/${page.route}`}
-                    >
+                  <Link 
+                    style = {{ textDecoration: "none" }}
+                    to={`/${page.route}`}
+                  >
+                    <Typography textAlign="center">
                       {page.name}
-                    </Link>
-                  </Typography>
+                    </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -115,8 +115,7 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component={Link} to="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -135,14 +134,11 @@ function ResponsiveAppBar() {
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', mx: 1 }}
+                variant="contained"
+                component={Link} to={`/${page.route}`}
               >
-                <Link 
-                  style = {{ textDecoration: "none", color: "white"}}
-                  to={`/${page.route}`}
-                >
                   {page.name}
-                </Link>
               </Button>
             ))}
           </Box>

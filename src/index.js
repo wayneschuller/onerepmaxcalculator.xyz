@@ -10,6 +10,8 @@ import { CookiesProvider } from 'react-cookie';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import color from '@mui/material/colors/indigo';
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 const theme = createTheme({
   palette: {
     primary: color,
@@ -19,13 +21,15 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
     <BrowserRouter>
-    <CookiesProvider>
-      <ThemeProvider theme={theme}>
+      <CookiesProvider>
+        <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    </CookiesProvider>
+     </CookiesProvider>
     </BrowserRouter>
+  </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

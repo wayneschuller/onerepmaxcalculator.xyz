@@ -89,7 +89,9 @@ function Home() {
        <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
       <h1>Welcome to Strength Journeys</h1>
       <h3>Visualise your lifting history - lift consistently for a long time.</h3>
-      <Doughnut data={data} />
+      {/* <Doughnut data={data} /> */}
+
+
        </Container>
      </Box>
     </div>
@@ -135,10 +137,14 @@ function Calculator() {
 function NoMatch() {
   return (
     <div>
+     <Box sx={{ m: 1 }} md={{ m: 3}} >
+       <Container maxWidth="lg" sx={{ borderRadius: '6px', border: '1px solid grey', boxShadow: '13', backgroundColor: 'palette.secondary.light' }}>
       <h2>Nothing to see here!</h2>
       <p>
         <Link to="/">Go to the home page</Link>
       </p>
+       </Container>
+     </Box>
     </div>
   );
 }

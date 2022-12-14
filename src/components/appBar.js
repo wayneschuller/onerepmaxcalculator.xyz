@@ -15,17 +15,26 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
+
+
 const pages = [
   { name: 'Strength Visualizer', route: 'visualizer'}, 
   { name: 'PR Analyzer', route: 'analyzer'}, 
   { name: 'E1RM Calculator', route: 'calculator'}, 
 ];
 
-const settings = ['Profile', 'Settings', 'Logout'];
+const settings = ['Profile', 'Settings'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  // FIXME: these auth related items could be grouped together in one state object
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [userName, setUserName] = React.useState(null);
+  const [avatarUrl, setAvatarUrl] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,18 +45,41 @@ function ResponsiveAppBar() {
 
   // Called when one of the menu items is clicked
   const handleCloseNavMenu = () => {
-    console.log(`menu item clicked ${Boolean(anchorElNav)}`);
+    // console.log(`menu item clicked ${Boolean(anchorElNav)}`);
     setAnchorElNav(null);
   };
 
+  // Called when one of the right hand side settings menus is clicked
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  // When user clicks logout menu in profile
+  const handleUserMenuLogout = () => {
+    console.log("Logging out of google...");
+    googleLogout();
+    setAnchorElUser(null);
+    setIsAuthenticated(false);
+  };
+
+  const onGoogleLoginSuccess = (credentialResponse) => {
+    let decodedResponse = jwt_decode(credentialResponse.credential);
+    setUserName(`${decodedResponse.name} (${decodedResponse.email})`); 
+    setAvatarUrl(decodedResponse.picture);
+    // console.log(decodedResponse);
+    setIsAuthenticated(true);
+  };
+
+  const onGoogleLoginFailure = (err) => {
+    console.log('failed:', err);
   };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+
+
           <FitnessCenterIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -143,38 +175,59 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {/* User profile info on right hand side of the navbar */}
+          { isAuthenticated ?  
+            <>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title={userName}>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt={userName} src={avatarUrl} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+
+                    <MenuItem onClick={handleUserMenuLogout}>
+                      <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>
+
+                </Menu>
+              </Box>
+            </> : <>
+              <GoogleLogin
+                onSuccess={onGoogleLoginSuccess}
+                onError={onGoogleLoginFailure}
+                size="large"
+                type="standard"
+                shape="circle"
+              />
+            </>
+          }
+                
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
+
 export default ResponsiveAppBar;

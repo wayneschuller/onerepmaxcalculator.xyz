@@ -13,3 +13,4 @@ Features:
 ## Example screenshot:
 ![one_rep_max_calculator](https://user-images.githubusercontent.com/1592295/197071984-3dd7d74a-8b4c-448a-9a73-a134060ad49c.jpg)
 
+Codebase uses Create React App template.

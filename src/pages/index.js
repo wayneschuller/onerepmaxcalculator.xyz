@@ -65,8 +65,8 @@ const Reps = () => (
 
 const Card = () => {
   return (
-    <div className="mt-8 justify-center rounded-md border border-slate-400 bg-slate-200 p-2 shadow-xl duration-75 md:p-4 md:hover:bg-slate-300 ring-1">
-      320kg!
+    <div className="mt-8 justify-center rounded-md border border-slate-400 bg-slate-200 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 ring-1">
+      Estimated One Rep Max: 320kg (Bryzki formula)
     </div>
   );
 };

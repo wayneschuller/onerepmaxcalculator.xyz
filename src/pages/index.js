@@ -23,17 +23,20 @@ const E1RMCalculator = () => {
       <>
         Estimate your max single based on reps and weight (see{" "}
         <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)
-        <div className="mt-4 grid grid-cols-3 gap-4">
-          <div>Reps:</div>
-          <div className="">
+        <div className="flex flex-col sm:flex-row mt-4">
+          <div className="w-2/12">Reps:</div>
+          <div className="flex-grow">
             <Reps />
           </div>
+          <div className="w-2/12 ml-2 md:ml-8">5</div>
+        </div>
+        <div className="flex flex-col sm:flex-row mt-4">
           <div></div>
-          <div>Weight:</div>
-          <div>
+          <div className="w-2/12">Weight:</div>
+          <div className="flex-grow">
             <Reps />
           </div>
-          <div></div>
+          <div className="w-2/12 ml-2 md:ml-8">105kg</div>
         </div>
       </>
     </div>

@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     // <main> from inital next.js default template
-    <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
+    <main className={`flex min-h-screen flex-col items-center justify-between p-4 ${inter.className}`}>
       <E1RMCalculator />
     </main>
   );
@@ -23,16 +23,27 @@ const E1RMCalculator = () => {
       <>
         Estimate your max single based on reps and weight (see{" "}
         <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)
-        <Reps />
+        <div className="mt-4 grid grid-cols-3 gap-4">
+          <div>Reps:</div>
+          <div className="">
+            <Reps />
+          </div>
+          <div></div>
+          <div>Weight:</div>
+          <div>
+            <Reps />
+          </div>
+          <div></div>
+        </div>
       </>
     </div>
   );
 };
 
 const Reps = () => (
-  <div>
+  <div className="">
     <Slider.Root
-      className="relative flex items-center select-none touch-none  h-5"
+      className="relative flex items-center select-none touch-none h-5"
       defaultValue={[50]}
       max={100}
       step={1}

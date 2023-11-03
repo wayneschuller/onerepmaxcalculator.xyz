@@ -1,9 +1,8 @@
 /** @format */
 
-// import Image from "next/image";
+import { useState } from "react";
 import { Inter } from "next/font/google";
 import * as Slider from "@radix-ui/react-slider";
-// import next from "next"; // Docs say DO NOT do this. https://nextjs.org/docs/messages/import-next
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +16,28 @@ export default function Home() {
 }
 
 const E1RMCalculator = () => {
+  const [reps, setReps] = useState(5);
+  const [weight, setWeight] = useState(100);
+  const [isMetric, setIsMetric] = useState(true);
+
+  const handleRepsSliderChange = (value) => {
+    // console.log(`reps change: ${value[0]}`);
+    setReps(value[0]);
+  };
+
+  const handleWeightSliderChange = (value) => {
+    let newWeight = value[0];
+    // console.log(`weight change: ${newWeight} `);
+
+    if (isMetric) {
+      newWeight = 2.5 * Math.ceil(newWeight / 2.5); // For kg only allow nice multiples of 2.5kg
+    } else {
+      newWeight = 5 * Math.ceil(newWeight / 5); // For lb only allow nice multiples of 5lb
+    }
+
+    setWeight(newWeight);
+  };
+
   return (
     <div>
       <h2>E1RM One Rep Max Calculator</h2>
@@ -26,17 +47,17 @@ const E1RMCalculator = () => {
         <div className="flex flex-col sm:flex-row mt-4">
           <div className="w-2/12">Reps:</div>
           <div className="flex-grow">
-            <Reps />
+            <Reps reps={[reps]} onChange={handleRepsSliderChange} />
           </div>
-          <div className="w-2/12 ml-2 md:ml-8">5</div>
+          <div className="w-2/12 ml-2 md:ml-8">{reps}</div>
         </div>
         <div className="flex flex-col sm:flex-row mt-4">
           <div></div>
           <div className="w-2/12">Weight:</div>
           <div className="flex-grow">
-            <Reps />
+            <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
           </div>
-          <div className="w-2/12 ml-2 md:ml-8">105kg</div>
+          <div className="w-2/12 ml-2 md:ml-8">{weight}kg</div>
         </div>
         <Card className="mt-8" />
       </>
@@ -44,24 +65,44 @@ const E1RMCalculator = () => {
   );
 };
 
-const Reps = () => (
-  <div className="">
-    <Slider.Root
-      className="relative flex items-center select-none touch-none h-5"
-      defaultValue={[50]}
-      max={100}
-      step={1}
-    >
-      <Slider.Track className="bg-black relative grow rounded-full h-[3px]">
-        <Slider.Range className="absolute bg-white rounded-full h-full" />
-      </Slider.Track>
-      <Slider.Thumb
-        className="block w-5 h-5 bg-white shadow-[0_2px_10px] shadow-black rounded-[10px] hover:bg-violet focus:outline-none focus:shadow-[0_0_0_5px] focus:shadow-black "
-        aria-label="Reps"
-      />
-    </Slider.Root>
-  </div>
+// Slider abstraction
+const Slider2 = ({ value, onChange, min, max, step }) => (
+  <Slider.Root
+    className="relative flex items-center select-none touch-none h-5"
+    defaultValue={value}
+    max={max}
+    step={step}
+    onValueChange={onChange}
+  >
+    <Slider.Track className="bg-black relative grow rounded-full h-[3px]">
+      <Slider.Range className="absolute bg-white rounded-full h-full" />
+    </Slider.Track>
+    <Slider.Thumb
+      className="block w-5 h-5 bg-white shadow-[0_2px_10px] shadow-black rounded-[10px] hover:bg-violet focus:outline-none focus:shadow-[0_0_0_5px] focus:shadow-black "
+      aria-label="Reps"
+    />
+  </Slider.Root>
 );
+
+// Reps input component
+const Reps = ({ reps, onChange }) => {
+  return (
+    <div>
+      <Slider2 aria-label="Reps" value={reps} min="1" max="20" onChange={onChange} />
+    </div>
+  );
+};
+
+// Weight input component
+const Weight = ({ weight, onChange, isMetric }) => {
+  let max = 600;
+
+  if (isMetric) {
+    max = 250;
+  }
+
+  return <Slider2 aria-label="Weight" value={weight} min={1} max={max} onChange={onChange} />;
+};
 
 const Card = () => {
   return (

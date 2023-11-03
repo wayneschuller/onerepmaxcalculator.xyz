@@ -59,7 +59,7 @@ const E1RMCalculator = () => {
           </div>
           <div className="w-2/12 ml-2 md:ml-8">{weight}kg</div>
         </div>
-        <Card className="mt-8" />
+        <Card className="mt-8" reps={reps} weight={weight} isMetric={isMetric} />
       </>
     </div>
   );
@@ -70,6 +70,7 @@ const Slider2 = ({ value, onChange, min, max, step }) => (
   <Slider.Root
     className="relative flex items-center select-none touch-none h-5"
     defaultValue={value}
+    min={min}
     max={max}
     step={step}
     onValueChange={onChange}
@@ -88,7 +89,7 @@ const Slider2 = ({ value, onChange, min, max, step }) => (
 const Reps = ({ reps, onChange }) => {
   return (
     <div>
-      <Slider2 aria-label="Reps" value={reps} min="1" max="20" onChange={onChange} />
+      <Slider2 aria-label="Reps" value={reps} max="20" onChange={onChange} />
     </div>
   );
 };
@@ -101,13 +102,39 @@ const Weight = ({ weight, onChange, isMetric }) => {
     max = 250;
   }
 
-  return <Slider2 aria-label="Weight" value={weight} min={1} max={max} onChange={onChange} />;
+  return <Slider2 aria-label="Weight" value={weight} max={max} onChange={onChange} />;
 };
 
-const Card = () => {
+const Card = ({ reps, weight, isMetric }) => {
   return (
     <div className="mt-8 justify-center rounded-md border border-slate-400 bg-slate-200 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 ring-1">
-      Estimated One Rep Max: 320kg (Bryzki formula)
+      Estimated One Rep Max: {" " + estimateE1RM(reps, weight, "Brzycki")}
+      {isMetric ? "kg" : "lb"} (Brzycki formula)
     </div>
   );
 };
+
+// Return a rounded 1 rep max
+// For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum
+function estimateE1RM(reps, weight, equation) {
+  if (reps === 1) return weight; // Heavy single requires no estimate!
+
+  switch (equation) {
+    case "Epley":
+      return Math.round(weight * (1 + reps / 30));
+    case "McGlothin":
+      return Math.round((100 * weight) / (101.3 - 2.67123 * reps));
+    case "Lombardi":
+      return Math.round(weight * Math.pow(reps, 0.1));
+    case "Mayhew":
+      return Math.round((100 * weight) / (52.2 + 41.9 * Math.pow(Math.E, -0.055 * reps)));
+    case "OConner":
+      return Math.round(weight * (1 + reps / 40));
+    case "Wathen":
+      return Math.round((100 * weight) / (48.8 + 53.8 * Math.pow(Math.E, -0.075 * reps)));
+    case "Brzycki":
+      return Math.round(weight / (1.0278 - 0.0278 * reps));
+    default: // Repeat Brzycki formula as a default here
+      return Math.round(weight / (1.0278 - 0.0278 * reps));
+  }
+}

@@ -1,6 +1,8 @@
 /** @format */
 
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import * as Slider from "@radix-ui/react-slider";
 
@@ -15,10 +17,39 @@ export default function Home() {
   );
 }
 
+let didInit = false;
+
 const E1RMCalculator = () => {
   const [reps, setReps] = useState(5);
-  const [weight, setWeight] = useState(100);
+  const [weight, setWeight] = useState(115);
   const [isMetric, setIsMetric] = useState(true);
+
+  useEffect(() => {
+    if (!didInit) {
+      didInit = true;
+      // Get some initial values from any browser localstorage
+      let initReps = localStorage.getItem("calcReps");
+      initReps = initReps ? parseInt(initReps) : 5;
+      setReps(initReps);
+
+      let initWeight = localStorage.getItem("calcWeight");
+      initWeight = initWeight ? parseFloat(initWeight) : 225;
+      setWeight(initWeight);
+
+      let initIsMetric = localStorage.getItem("calcIsMetric");
+      initIsMetric = initIsMetric === "true"; // boolean is true if string is "true" otherwise false
+      setIsMetric(initIsMetric);
+    }
+  }, []);
+
+  // useEffect when state changes put key variables in localStorage so we can default to them next time
+  useEffect(() => {
+    console.log(`Changes: ${reps} ${weight} `);
+
+    localStorage.setItem("calcReps", reps);
+    localStorage.setItem("calcWeight", weight);
+    localStorage.setItem("calcIsMetric", isMetric);
+  }, [weight, reps, isMetric]);
 
   const handleRepsSliderChange = (value) => {
     // console.log(`reps change: ${value[0]}`);
@@ -59,7 +90,7 @@ const E1RMCalculator = () => {
           </div>
           <div className="w-2/12 ml-2 md:ml-8">{weight}kg</div>
         </div>
-        <Card className="mt-8" reps={reps} weight={weight} isMetric={isMetric} />
+        <Card reps={reps} weight={weight} isMetric={isMetric} />
       </>
     </div>
   );
@@ -107,7 +138,7 @@ const Weight = ({ weight, onChange, isMetric }) => {
 
 const Card = ({ reps, weight, isMetric }) => {
   return (
-    <div className="mt-8 justify-center rounded-md border border-slate-400 bg-slate-200 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 ring-1">
+    <div className="mt-8 w-2/3 justify-self-center rounded-md border border-slate-400 bg-slate-200 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 ring-1">
       Estimated One Rep Max: {" " + estimateE1RM(reps, weight, "Brzycki")}
       {isMetric ? "kg" : "lb"} (Brzycki formula)
     </div>

@@ -44,8 +44,6 @@ const E1RMCalculator = () => {
 
   // useEffect when state changes put key variables in localStorage so we can default to them next time
   useEffect(() => {
-    console.log(`Changes: ${reps} ${weight} `);
-
     localStorage.setItem("calcReps", reps);
     localStorage.setItem("calcWeight", weight);
     localStorage.setItem("calcIsMetric", isMetric);
@@ -100,7 +98,7 @@ const E1RMCalculator = () => {
 const Slider2 = ({ value, onChange, min, max, step }) => (
   <Slider.Root
     className="relative flex items-center select-none touch-none h-5"
-    defaultValue={value}
+    value={value}
     min={min}
     max={max}
     step={step}

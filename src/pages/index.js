@@ -70,9 +70,16 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
-  // Function to toggle the boolean value
-  const toggleIsMetric = () => {
-    setIsMetric((prevState) => !prevState);
+  const toggleIsMetric = (isMetric) => {
+    if (!isMetric) {
+      // Going from kg to lb
+      setWeight(Math.round(weight * 2.2046));
+      setIsMetric(false);
+    } else {
+      // Going from lb to kg
+      setWeight(Math.round(weight / 2.2046));
+      setIsMetric(true);
+    }
   };
 
   return (

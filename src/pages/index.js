@@ -180,8 +180,12 @@ const Weight = ({ weight, onChange, isMetric }) => {
 const Card = ({ reps, weight, isMetric }) => {
   return (
     <div className="mt-8 w-2/3 justify-self-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
-      Estimated One Rep Max: {" " + estimateE1RM(reps, weight, "Brzycki")}
-      {isMetric ? "kg" : "lb"} (Brzycki formula)
+      Estimated One Rep Max:{" "}
+      <b>
+        {" " + estimateE1RM(reps, weight, "Brzycki")}
+        {isMetric ? "kg" : "lb"}
+      </b>{" "}
+      (Brzycki formula)
     </div>
   );
 };

@@ -5,6 +5,8 @@
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import * as Slider from "@radix-ui/react-slider";
+import * as Switch from "@radix-ui/react-switch";
+// import { Switch } from "@radix-ui/react-switch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,6 +70,11 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
+  // Function to toggle the boolean value
+  const toggleIsMetric = () => {
+    setIsMetric((prevState) => !prevState);
+  };
+
   return (
     <div>
       <h2>E1RM One Rep Max Calculator</h2>
@@ -82,7 +89,6 @@ const E1RMCalculator = () => {
           <div className="w-2/12 ml-2 md:ml-8">{reps}</div>
         </div>
         <div className="flex flex-col sm:flex-row mt-4">
-          <div></div>
           <div className="w-2/12">Weight:</div>
           <div className="flex-grow">
             <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
@@ -92,11 +98,37 @@ const E1RMCalculator = () => {
             {isMetric ? "kg" : "lb"}
           </div>
         </div>
-        <Card reps={reps} weight={weight} isMetric={isMetric} />
+        <div className="flex flex-col sm:flex-row mt-4 gap-2">
+          <Card reps={reps} weight={weight} isMetric={isMetric} />
+          <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
+        </div>
       </>
     </div>
   );
 };
+
+const UnitChooser = ({ isMetric, onSwitchChange }) => (
+  <div className="flex items-center align-middle">
+    <label className="leading-none pr-[10px]">Pounds</label>
+    <Switch.Root
+      className={`w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
+        isMetric ? "data-[state=checked]:bg-black" : ""
+      } outline-none cursor-default`}
+      id="airplane-mode"
+      onCheckedChange={() => onSwitchChange(!isMetric)}
+      checked={isMetric}
+    >
+      <Switch.Thumb
+        className={`block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform ${
+          isMetric ? "data-[state=checked]:translate-x-[19px]" : ""
+        }`}
+      />
+    </Switch.Root>
+    <label className="leading-none pl-[10px]" htmlFor="kilos-mode">
+      Kilos
+    </label>
+  </div>
+);
 
 // Slider abstraction
 const Slider2 = ({ value, onChange, min, max, step }) => (

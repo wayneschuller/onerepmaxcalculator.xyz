@@ -1,5 +1,9 @@
 # One Rep Max Calculator
 
+20230811 - THIS IS THE OLD CRA VERSION OF THE CALCULATOR
+
+WE HAVE NOW MOVED TO NEXT.JS
+
 A React based one rep max calculator web app. 
 
 Available publicly at https://onerepmaxcalculator.xyz

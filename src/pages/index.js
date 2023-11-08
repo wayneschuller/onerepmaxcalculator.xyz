@@ -86,7 +86,9 @@ const E1RMCalculator = () => {
 
   return (
     <div className="h-min w-3/4  border border-black rounded-lg bg-slate-400 dark:bg-slate-900  dark:border-white p-4 mx-60">
-      <h2>E1RM One Rep Max Calculator</h2>
+      <h2>
+        <b>E1RM One Rep Max Calculator</b>
+      </h2>
       <>
         Estimate your max single based on reps and weight (see{" "}
         <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)

@@ -4,6 +4,8 @@
 
 A React based one rep max calculator web app.
 
+Uses next.js 14.
+
 Available publicly at https://onerepmaxcalculator.xyz
 
 Features:

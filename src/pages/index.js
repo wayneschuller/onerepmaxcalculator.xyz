@@ -14,7 +14,7 @@ export default function Home() {
   return (
     // <main> from inital next.js default template
     <main
-      className={`flex min-h-screen bg-gray-300 dark:bg-black flex-col items-center justify-between p-4 ${inter.className}`}
+      className={`flex min-h-screen bg-gray-300 dark:bg-black flex-col items-center justify-between pt-4 ${inter.className}`}
     >
       <E1RMCalculator />
     </main>
@@ -91,49 +91,51 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 mx-60">
+    <div className="h-min w-auto  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 mx-4 md:mx-20 lg:mx-30">
       <h2 className="text-2xl">
         <b>E1RM One Rep Max Calculator</b>
       </h2>
-      <>
-        Estimate your max single based on reps and weight (see{" "}
-        <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)
-        <div className="flex flex-col sm:flex-row mt-4">
-          <div className="w-2/12">Reps:</div>
-          <div className="flex-grow">
-            <Reps reps={[reps]} onChange={handleRepsSliderChange} />
-          </div>
-          <div className="w-2/12 ml-2 md:ml-8">
-            <b>{reps}</b>
+      <div className="flex flex-col md:flex-row gap-2 ">
+        <div className="flex-1">
+          Estimate your max single based on reps and weight (see{" "}
+          <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)
+        </div>
+        <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
+      </div>
+      <div className="flex flex-col sm:flex-row mt-4">
+        <div className="w-2/12">Reps:</div>
+        <div className="flex-grow">
+          <Reps reps={[reps]} onChange={handleRepsSliderChange} />
+        </div>
+        <div className="w-2/12 ml-2 md:ml-8">
+          <b>{reps}</b>
+        </div>
+      </div>
+      <div className="flex flex-col sm:flex-row mt-4">
+        <div className="w-2/12">Weight:</div>
+        <div className="flex-grow">
+          <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
+        </div>
+        <div className="w-2/12 ml-2 md:ml-8">
+          <div className="flex gap-1">
+            <b>
+              <input
+                className="w-16 text-black"
+                type="number"
+                min="1"
+                step="1"
+                id="weightInput"
+                value={weight}
+                onChange={handleEntryWeightChange}
+              />
+            </b>
+            {isMetric ? "kg" : "lb"}
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row mt-4">
-          <div className="w-2/12">Weight:</div>
-          <div className="flex-grow">
-            <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
-          </div>
-          <div className="w-2/12 ml-2 md:ml-8">
-            <div className="flex gap-1">
-              <b>
-                <input
-                  className="w-16 text-black"
-                  type="number"
-                  min="1"
-                  step="1"
-                  id="weightInput"
-                  value={weight}
-                  onChange={handleEntryWeightChange}
-                />
-              </b>
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row mt-4 gap-4">
-          <Card reps={reps} weight={weight} isMetric={isMetric} />
-          <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
-        </div>
-      </>
+      </div>
+      <div className="flex flex-1 justify-center mt-4 gap-4">
+        <Card reps={reps} weight={weight} isMetric={isMetric} />
+      </div>
     </div>
   );
 };

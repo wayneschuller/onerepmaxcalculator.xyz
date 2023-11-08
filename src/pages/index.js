@@ -13,7 +13,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     // <main> from inital next.js default template
-    <main className={`flex min-h-screen flex-col items-center justify-between p-4 ${inter.className}`}>
+    <main
+      className={`flex min-h-screen bg-gray-300 shadow-lg shadow-black flex-col items-center justify-between p-4 ${inter.className}`}
+    >
       <E1RMCalculator />
     </main>
   );
@@ -83,7 +85,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div>
+    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-400 p-4 mx-60">
       <h2>E1RM One Rep Max Calculator</h2>
       <>
         Estimate your max single based on reps and weight (see{" "}
@@ -105,7 +107,7 @@ const E1RMCalculator = () => {
             {isMetric ? "kg" : "lb"}
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row mt-4 gap-2">
+        <div className="flex flex-col sm:flex-row mt-4 gap-4">
           <Card reps={reps} weight={weight} isMetric={isMetric} />
           <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
         </div>

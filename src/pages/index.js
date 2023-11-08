@@ -14,7 +14,7 @@ export default function Home() {
   return (
     // <main> from inital next.js default template
     <main
-      className={`flex min-h-screen bg-gray-300 shadow-lg shadow-black flex-col items-center justify-between p-4 ${inter.className}`}
+      className={`flex min-h-screen bg-gray-300 dark:bg-black shadow-lg shadow-black dark:shadow-white flex-col items-center justify-between p-4 ${inter.className}`}
     >
       <E1RMCalculator />
     </main>
@@ -85,7 +85,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-400 p-4 mx-60">
+    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-400 dark:bg-slate-900  dark:border-white p-4 mx-60">
       <h2>E1RM One Rep Max Calculator</h2>
       <>
         Estimate your max single based on reps and weight (see{" "}

@@ -72,6 +72,12 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
+  const handleEntryWeightChange = (e) => {
+    const input = e.target.value;
+    //FIXME: do any error checking? Check for negative?
+    setWeight(input);
+  };
+
   const toggleIsMetric = (isMetric) => {
     if (!isMetric) {
       // Going from kg to lb
@@ -105,8 +111,18 @@ const E1RMCalculator = () => {
             <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
           </div>
           <div className="w-2/12 ml-2 md:ml-8">
-            {weight}
-            {isMetric ? "kg" : "lb"}
+            <div className="flex gap-1">
+              <input
+                className="w-16"
+                type="number"
+                min="1"
+                step="1"
+                id="weightInput"
+                value={weight}
+                onChange={handleEntryWeightChange}
+              />
+              {isMetric ? "kg" : "lb"}
+            </div>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row mt-4 gap-4">

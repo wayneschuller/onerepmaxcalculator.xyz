@@ -14,7 +14,7 @@ export default function Home() {
   return (
     // <main> from inital next.js default template
     <main
-      className={`flex min-h-screen bg-gray-300 dark:bg-black shadow-lg shadow-black dark:shadow-white flex-col items-center justify-between p-4 ${inter.className}`}
+      className={`flex min-h-screen bg-gray-300 dark:bg-black flex-col items-center justify-between p-4 ${inter.className}`}
     >
       <E1RMCalculator />
     </main>
@@ -91,8 +91,8 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-400 dark:bg-slate-900  dark:border-white p-4 mx-60">
-      <h2>
+    <div className="h-min w-3/4  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 mx-60">
+      <h2 className="text-2xl">
         <b>E1RM One Rep Max Calculator</b>
       </h2>
       <>
@@ -142,7 +142,7 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
   <div className="flex items-center align-middle">
     <label className="leading-none pr-[10px]">Pounds</label>
     <Switch.Root
-      className={`w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
+      className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
         isMetric ? "data-[state=checked]:bg-black" : ""
       } outline-none cursor-default`}
       id="airplane-mode"
@@ -172,7 +172,7 @@ const Slider2 = ({ value, onChange, min, max, step }) => (
     onValueChange={onChange}
   >
     <Slider.Track className="bg-black relative grow rounded-full h-[3px]">
-      <Slider.Range className="absolute bg-white rounded-full h-full" />
+      <Slider.Range className="absolute bg-slate-400 rounded-full h-full" />
     </Slider.Track>
     <Slider.Thumb
       className="block w-5 h-5 bg-white shadow-[0_2px_10px] shadow-black rounded-[10px] hover:bg-violet focus:outline-none focus:shadow-[0_0_0_5px] focus:shadow-black "

@@ -116,7 +116,7 @@ const E1RMCalculator = () => {
             <div className="flex gap-1">
               <b>
                 <input
-                  className="w-16"
+                  className="w-16 text-black"
                   type="number"
                   min="1"
                   step="1"

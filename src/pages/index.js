@@ -91,7 +91,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-auto  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 mx-4 md:mx-20 lg:mx-30">
+    <div className="h-min w-11/12 md:w-4/5  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 ">
       <h2 className="text-2xl">
         <b>E1RM One Rep Max Calculator</b>
       </h2>
@@ -103,7 +103,7 @@ const E1RMCalculator = () => {
         <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
       </div>
       <div className="flex flex-col sm:flex-row mt-4">
-        <div className="w-2/12">Reps:</div>
+        <div className="w-[5rem]">Reps:</div>
         <div className="flex-grow">
           <Reps reps={[reps]} onChange={handleRepsSliderChange} />
         </div>
@@ -112,7 +112,7 @@ const E1RMCalculator = () => {
         </div>
       </div>
       <div className="flex flex-col sm:flex-row mt-4">
-        <div className="w-2/12">Weight:</div>
+        <div className="w-[5rem]">Weight:</div>
         <div className="flex-grow">
           <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
         </div>
@@ -134,7 +134,7 @@ const E1RMCalculator = () => {
         </div>
       </div>
       <div className="flex flex-1 justify-center mt-4 gap-4">
-        <Card reps={reps} weight={weight} isMetric={isMetric} />
+        <Card classname="" reps={reps} weight={weight} isMetric={isMetric} />
       </div>
     </div>
   );
@@ -142,7 +142,7 @@ const E1RMCalculator = () => {
 
 const UnitChooser = ({ isMetric, onSwitchChange }) => (
   <div className="flex items-center align-middle">
-    <label className="leading-none pr-[10px]">Pounds</label>
+    <label className="leading-none text-sm pr-[10px]">Pounds</label>
     <Switch.Root
       className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
         isMetric ? "data-[state=checked]:bg-black" : ""
@@ -157,7 +157,7 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
         }`}
       />
     </Switch.Root>
-    <label className="leading-none pl-[10px]" htmlFor="kilos-mode">
+    <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode">
       Kilos
     </label>
   </div>
@@ -205,7 +205,7 @@ const Weight = ({ weight, onChange, isMetric }) => {
 
 const Card = ({ reps, weight, isMetric }) => {
   return (
-    <div className="mt-8 w-2/3 justify-self-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
+    <div className="mt-8 md:mx-8 justify-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
       Estimated One Rep Max:{" "}
       <b>
         {" " + estimateE1RM(reps, weight, "Brzycki")}

@@ -103,7 +103,9 @@ const E1RMCalculator = () => {
           <div className="flex-grow">
             <Reps reps={[reps]} onChange={handleRepsSliderChange} />
           </div>
-          <div className="w-2/12 ml-2 md:ml-8">{reps}</div>
+          <div className="w-2/12 ml-2 md:ml-8">
+            <b>{reps}</b>
+          </div>
         </div>
         <div className="flex flex-col sm:flex-row mt-4">
           <div className="w-2/12">Weight:</div>
@@ -112,15 +114,17 @@ const E1RMCalculator = () => {
           </div>
           <div className="w-2/12 ml-2 md:ml-8">
             <div className="flex gap-1">
-              <input
-                className="w-16"
-                type="number"
-                min="1"
-                step="1"
-                id="weightInput"
-                value={weight}
-                onChange={handleEntryWeightChange}
-              />
+              <b>
+                <input
+                  className="w-16"
+                  type="number"
+                  min="1"
+                  step="1"
+                  id="weightInput"
+                  value={weight}
+                  onChange={handleEntryWeightChange}
+                />
+              </b>
               {isMetric ? "kg" : "lb"}
             </div>
           </div>

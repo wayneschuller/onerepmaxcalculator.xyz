@@ -187,7 +187,7 @@ const Slider2 = ({ value, onChange, min, max, step }) => (
 const Reps = ({ reps, onChange }) => {
   return (
     <div>
-      <Slider2 aria-label="Reps" value={reps} max="20" onChange={onChange} />
+      <Slider2 aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} />
     </div>
   );
 };
@@ -200,7 +200,7 @@ const Weight = ({ weight, onChange, isMetric }) => {
     max = 250;
   }
 
-  return <Slider2 aria-label="Weight" value={weight} max={max} onChange={onChange} />;
+  return <Slider2 aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
 };
 
 const Card = ({ reps, weight, isMetric }) => {

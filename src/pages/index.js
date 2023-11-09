@@ -161,7 +161,7 @@ const E1RMCalculator = () => {
           {isMetric ? "kg" : "lb"}
         </Card>
         <Card>
-          O'Conner et al.: {estimateE1RM(reps, weight, "OConner")}
+          O&apos;Conner et al.: {estimateE1RM(reps, weight, "OConner")}
           {isMetric ? "kg" : "lb"}
         </Card>
         <Card>

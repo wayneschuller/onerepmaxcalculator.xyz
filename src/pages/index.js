@@ -133,8 +133,41 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
+      <div className="flex flex-1 justify-center mt-2 gap-2">
+        <Card>
+          Estimated One Rep Max:{" "}
+          <b>
+            {" " + estimateE1RM(reps, weight, "Brzycki")}
+            {isMetric ? "kg" : "lb"}
+          </b>{" "}
+          (Brzycki formula)
+        </Card>
+      </div>
       <div className="flex flex-1 justify-center mt-4 gap-4">
-        <Card classname="" reps={reps} weight={weight} isMetric={isMetric} />
+        <Card>
+          Epley: {estimateE1RM(reps, weight, "Epley")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
+        <Card>
+          McGlothin: {estimateE1RM(reps, weight, "McGlothin")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
+        <Card>
+          Lombardi: {estimateE1RM(reps, weight, "Lombardi")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
+        <Card>
+          Mayhew et al.: {estimateE1RM(reps, weight, "Mayhew")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
+        <Card>
+          O'Conner et al.: {estimateE1RM(reps, weight, "OConner")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
+        <Card>
+          Wathen: {estimateE1RM(reps, weight, "Wathen")}
+          {isMetric ? "kg" : "lb"}
+        </Card>
       </div>
     </div>
   );
@@ -203,18 +236,16 @@ const Weight = ({ weight, onChange, isMetric }) => {
   return <Slider2 aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
 };
 
-const Card = ({ reps, weight, isMetric }) => {
+// Styled card for the results
+function Card({ children }) {
+  // hello
+
   return (
-    <div className="mt-8 md:mx-8 justify-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
-      Estimated One Rep Max:{" "}
-      <b>
-        {" " + estimateE1RM(reps, weight, "Brzycki")}
-        {isMetric ? "kg" : "lb"}
-      </b>{" "}
-      (Brzycki formula)
+    <div className="justify-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
+      {children}
     </div>
   );
-};
+}
 
 // Return a rounded 1 rep max
 // For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum

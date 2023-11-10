@@ -144,10 +144,10 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 justify-center mt-2 gap-2">
+      <div className="flex justify-center mt-2 gap-2">
         <Card>
           <div className="flex flex-col">
-            <div className="flex-1">
+            <div className="">
               Estimated One Rep Max:{" "}
               <b>
                 {" " + estimateE1RM(reps, weight, "Brzycki")}

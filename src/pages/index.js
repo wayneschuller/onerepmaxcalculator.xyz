@@ -135,6 +135,7 @@ const E1RMCalculator = () => {
                 min="1"
                 step="1"
                 id="weightInput"
+                aria-labelledby="weight"
                 value={weight}
                 onChange={handleEntryWeightChange}
               />

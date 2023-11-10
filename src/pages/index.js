@@ -197,7 +197,8 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
       className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
         isMetric ? "data-[state=checked]:bg-black" : ""
       } outline-none cursor-default`}
-      id="airplane-mode"
+      id="unit type"
+      aria-label="unit type"
       onCheckedChange={() => onSwitchChange(!isMetric)}
       checked={isMetric}
     >

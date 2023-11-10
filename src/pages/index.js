@@ -146,16 +146,20 @@ const E1RMCalculator = () => {
       </div>
       <div className="flex flex-1 justify-center mt-2 gap-2">
         <Card>
-          Estimated One Rep Max:{" "}
-          <b>
-            {" " + estimateE1RM(reps, weight, "Brzycki")}
-            {isMetric ? "kg" : "lb"}
-          </b>{" "}
-          (Brzycki formula)
+          <div className="flex flex-col">
+            <div className="flex-1">
+              Estimated One Rep Max:{" "}
+              <b>
+                {" " + estimateE1RM(reps, weight, "Brzycki")}
+                {isMetric ? "kg" : "lb"}
+              </b>{" "}
+            </div>
+            <div>(Brzycki formula)</div>
+          </div>
         </Card>
       </div>
-      <div className="flex flex-1 justify-center mt-4 gap-4">
-        <Card className="min-w-max">
+      <div className="lg:flex grid grid-cols-2 lg:flex-row justify-center mt-4 gap-4">
+        <Card>
           Epley: {estimateE1RM(reps, weight, "Epley")}
           {isMetric ? "kg" : "lb"}
         </Card>
@@ -251,10 +255,8 @@ const Weight = ({ weight, onChange, isMetric }) => {
 
 // Styled card for the results
 function Card({ children }) {
-  // hello
-
   return (
-    <div className="justify-center rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
+    <div className="justify-center  rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
       {children}
     </div>
   );

@@ -201,7 +201,6 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
         className={`block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform ${
           isMetric ? "data-[state=checked]:translate-x-[19px]" : ""
         }`}
-        aria-label="units"
       />
     </Switch.Root>
     <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode" aria-label="kilos">

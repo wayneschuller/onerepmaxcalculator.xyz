@@ -175,7 +175,7 @@ const E1RMCalculator = () => {
 
 const UnitChooser = ({ isMetric, onSwitchChange }) => (
   <div className="flex items-center align-middle">
-    <label className="leading-none text-sm pr-[10px]">Pounds</label>
+    <label className="leading-none text-sm pr-[10px]" aria-label="pounds">Pounds</label>
     <Switch.Root
       className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
         isMetric ? "data-[state=checked]:bg-black" : ""
@@ -187,10 +187,11 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
       <Switch.Thumb
         className={`block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform ${
           isMetric ? "data-[state=checked]:translate-x-[19px]" : ""
-        }`}
+        }` 
+      aria-label="units"}
       />
     </Switch.Root>
-    <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode">
+    <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode" aria-label="kilos">
       Kilos
     </label>
   </div>

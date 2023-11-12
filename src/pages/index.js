@@ -151,9 +151,9 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-2 gap-2">
-        <Card>
-          <div className="flex flex-col">
+      <div className="flex flex-1 justify-center mt-2 gap-2">
+        <Card className="">
+          <div className="w-64">
             <div className="">
               Estimated One Rep Max:{" "}
               <b>
@@ -165,7 +165,7 @@ const E1RMCalculator = () => {
           </div>
         </Card>
       </div>
-      <div className="lg:flex grid grid-cols-2 lg:flex-row justify-center mt-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
         <Card>
           Epley: {estimateE1RM(reps, weight, "Epley")}
           {isMetric ? "kg" : "lb"}

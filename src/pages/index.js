@@ -7,8 +7,7 @@ import { Inter } from "next/font/google";
 import * as Slider from "@radix-ui/react-slider";
 import * as Switch from "@radix-ui/react-switch";
 import Head from "next/head";
-
-// import { Switch } from "@radix-ui/react-switch";
+import { Card } from "../components/Card";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,8 +40,8 @@ export default function Home() {
 let didInit = false;
 
 const E1RMCalculator = () => {
-  const [reps, setReps] = useState(5);
-  const [weight, setWeight] = useState(225);
+  const [reps, setReps] = useState(1);
+  const [weight, setWeight] = useState(1);
   const [isMetric, setIsMetric] = useState(true);
 
   // useEffect on first init get defaults from localStorage
@@ -260,15 +259,6 @@ const Weight = ({ weight, onChange, isMetric }) => {
 
   return <Slider2 aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
 };
-
-// Styled card for the results
-function Card({ children }) {
-  return (
-    <div className="justify-center  rounded-md border border-slate-400 bg-slate-200 dark:bg-slate-900 p-2 shadow-md shadow-slate-600 duration-75 md:p-4 md:hover:bg-slate-300 md:dark:hover:bg-slate-800 ring-1">
-      {children}
-    </div>
-  );
-}
 
 // Return a rounded 1 rep max
 // For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum

@@ -8,6 +8,7 @@ import * as Switch from "@radix-ui/react-switch";
 import Head from "next/head";
 import { Card } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
+import { estimateE1RM } from "../components/estimateE1RM";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -194,6 +195,26 @@ const E1RMCalculator = () => {
   );
 };
 
+// Reps input component
+const Reps = ({ reps, onChange }) => {
+  return (
+    <div>
+      <CalcSlider aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} />
+    </div>
+  );
+};
+
+// Weight input component
+const Weight = ({ weight, onChange, isMetric }) => {
+  let max = 600;
+
+  if (isMetric) {
+    max = 250;
+  }
+
+  return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
+};
+
 const UnitChooser = ({ isMetric, onSwitchChange }) => (
   <div className="flex items-center align-middle">
     <label className="leading-none text-sm pr-[10px]" aria-label="pounds">
@@ -219,48 +240,3 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
     </label>
   </div>
 );
-
-// Reps input component
-const Reps = ({ reps, onChange }) => {
-  return (
-    <div>
-      <CalcSlider aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} />
-    </div>
-  );
-};
-
-// Weight input component
-const Weight = ({ weight, onChange, isMetric }) => {
-  let max = 600;
-
-  if (isMetric) {
-    max = 250;
-  }
-
-  return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
-};
-
-// Return a rounded 1 rep max
-// For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum
-function estimateE1RM(reps, weight, equation) {
-  if (reps === 1) return weight; // Heavy single requires no estimate!
-
-  switch (equation) {
-    case "Epley":
-      return Math.round(weight * (1 + reps / 30));
-    case "McGlothin":
-      return Math.round((100 * weight) / (101.3 - 2.67123 * reps));
-    case "Lombardi":
-      return Math.round(weight * Math.pow(reps, 0.1));
-    case "Mayhew":
-      return Math.round((100 * weight) / (52.2 + 41.9 * Math.pow(Math.E, -0.055 * reps)));
-    case "OConner":
-      return Math.round(weight * (1 + reps / 40));
-    case "Wathen":
-      return Math.round((100 * weight) / (48.8 + 53.8 * Math.pow(Math.E, -0.075 * reps)));
-    case "Brzycki":
-      return Math.round(weight / (1.0278 - 0.0278 * reps));
-    default: // Repeat Brzycki formula as a default here
-      return Math.round(weight / (1.0278 - 0.0278 * reps));
-  }
-}

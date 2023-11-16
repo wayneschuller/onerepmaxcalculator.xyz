@@ -125,21 +125,21 @@ const E1RMCalculator = () => {
         </a>{" "}
         for theory)
       </div>
-      <div className="flex flex-col sm:flex-row mt-4">
+      <div className="flex flex-col sm:flex-row mt-4 mr-2">
         <div className="w-[5rem]">Reps:</div>
         <div className="flex-grow">
           <Reps reps={[reps]} onChange={handleRepsSliderChange} />
         </div>
-        <div className="w-2/12 ml-2 md:ml-8">
+        <div className="w-[5rem] ml-2 md:ml-8">
           <b>{reps}</b>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row mt-4">
+      <div className="flex flex-col sm:flex-row mt-4 mr-2">
         <div className="w-[5rem]">Weight:</div>
         <div className="flex-grow">
           <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
         </div>
-        <div className="w-2/12 ml-2 md:ml-8">
+        <div className="w-[5rem] ml-2 md:ml-8">
           <div className="flex gap-1">
             <b>
               <input
@@ -157,9 +157,9 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 justify-center mt-2 gap-2">
+      <div className="flex flex-1 justify-center mt-8 gap-2">
         <Card className="">
-          <div className="w-64">
+          <div className="">
             <div className="text-xl">Estimated One Rep Max: </div>
             <div className="text-3xl font-bold flex flex-row justify-center items-center">
               {" " + estimateE1RM(reps, weight, "Brzycki")}

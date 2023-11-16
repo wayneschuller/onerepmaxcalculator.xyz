@@ -117,7 +117,13 @@ const E1RMCalculator = () => {
       </div>
       <div className="mt-2 md:mt-0 flex-1">
         Estimate your max single based on reps and weight (see{" "}
-        <a href="https://en.wikipedia.org/wiki/One-repetition_maximum">Wikipedia article</a> for theory)
+        <a
+          href="https://en.wikipedia.org/wiki/One-repetition_maximum"
+          className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+        >
+          Wikipedia article
+        </a>{" "}
+        for theory)
       </div>
       <div className="flex flex-col sm:flex-row mt-4">
         <div className="w-[5rem]">Reps:</div>

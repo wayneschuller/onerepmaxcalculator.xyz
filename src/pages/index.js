@@ -110,7 +110,7 @@ const E1RMCalculator = () => {
   return (
     <div className="h-min w-11/12 md:w-4/5  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 ">
       <div className="flex flex-col md:flex-row gap-2 ">
-        <h2 className="flex-1 text-2xl">
+        <h2 className="flex-1 text-3xl">
           <b>E1RM One Rep Max Calculator</b>
         </h2>
         <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
@@ -154,41 +154,69 @@ const E1RMCalculator = () => {
       <div className="flex flex-1 justify-center mt-2 gap-2">
         <Card className="">
           <div className="w-64">
-            <div className="">
-              Estimated One Rep Max:{" "}
-              <b>
-                {" " + estimateE1RM(reps, weight, "Brzycki")}
-                {isMetric ? "kg" : "lb"}
-              </b>{" "}
+            <div className="text-xl">Estimated One Rep Max: </div>
+            <div className="text-3xl font-bold flex flex-row justify-center items-center">
+              {" " + estimateE1RM(reps, weight, "Brzycki")}
+              {isMetric ? "kg" : "lb"}
             </div>
-            <div>(Brzycki formula)</div>
+            <div className="flex flex-row justify-center items-center">(Brzycki formula)</div>
           </div>
         </Card>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
-        <Card>
-          Epley: {estimateE1RM(reps, weight, "Epley")}
-          {isMetric ? "kg" : "lb"}
+        <Card className="">
+          <div className="flex flex-col justify-center items-center">
+            Epley:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "Epley")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
         <Card>
-          McGlothin: {estimateE1RM(reps, weight, "McGlothin")}
-          {isMetric ? "kg" : "lb"}
+          <div className="flex flex-col justify-center items-center">
+            McGlothin:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "McGlothin")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
         <Card>
-          Lombardi: {estimateE1RM(reps, weight, "Lombardi")}
-          {isMetric ? "kg" : "lb"}
+          <div className="flex flex-col justify-center items-center">
+            Lombardi:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "Lombardi")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
         <Card>
-          Mayhew et al.: {estimateE1RM(reps, weight, "Mayhew")}
-          {isMetric ? "kg" : "lb"}
+          <div className="flex flex-col justify-center items-center">
+            Mayhew et al.:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "Mayhew")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
         <Card>
-          O&apos;Conner et al.: {estimateE1RM(reps, weight, "OConner")}
-          {isMetric ? "kg" : "lb"}
+          <div className="flex flex-col justify-center items-center">
+            O&apos;Conner et al.:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "OConner")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
         <Card>
-          Wathen: {estimateE1RM(reps, weight, "Wathen")}
-          {isMetric ? "kg" : "lb"}
+          <div className="flex flex-col justify-center items-center">
+            Wathen:
+            <div className="font-bold">
+              {estimateE1RM(reps, weight, "Wathen")}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </div>
         </Card>
       </div>
     </div>

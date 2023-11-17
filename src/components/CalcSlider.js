@@ -2,7 +2,7 @@
 "use client";
 import * as Slider from "@radix-ui/react-slider";
 
-export const CalcSlider = ({ value, onChange, min, max, step }) => (
+export const CalcSlider = ({ value, onChange, onCommit, min, max, step }) => (
   <Slider.Root
     className="relative flex items-center select-none touch-none h-5"
     value={value}
@@ -10,6 +10,7 @@ export const CalcSlider = ({ value, onChange, min, max, step }) => (
     max={max}
     step={step}
     onValueChange={onChange}
+    onValueCommit={onCommit}
   >
     <Slider.Track className="bg-black relative grow rounded-full h-[3px]">
       <Slider.Range className="absolute bg-slate-400 rounded-full h-full" />

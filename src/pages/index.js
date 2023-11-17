@@ -9,6 +9,7 @@ import Head from "next/head";
 import { Card } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../components/estimateE1RM";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,32 +45,21 @@ const E1RMCalculator = () => {
   const [reps, setReps] = useState(1);
   const [weight, setWeight] = useState(1);
   const [isMetric, setIsMetric] = useState(true);
+  const router = useRouter();
 
-  // useEffect on first init get defaults from localStorage
   useEffect(() => {
-    if (!didInit) {
-      didInit = true;
-      // Get some initial values from any browser localstorage
-      let initReps = localStorage.getItem("calcReps");
-      initReps = initReps ? parseInt(initReps) : 5;
-      setReps(initReps);
+    // Get some initial values from URL parameters
+    const initReps = router?.query?.reps ?? 1;
+    const initWeight = router?.query?.weight ?? 1;
+    const initIsMetric = router?.query?.isMetric === "true" || false; // Default to pounds (isMetric should be boolean, not string)
 
-      let initWeight = localStorage.getItem("calcWeight");
-      initWeight = initWeight ? parseFloat(initWeight) : 225;
-      setWeight(initWeight);
-
-      let initIsMetric = localStorage.getItem("calcIsMetric");
-      initIsMetric = initIsMetric === "true"; // boolean is true if string is "true" otherwise false
-      setIsMetric(initIsMetric);
-    }
-  }, []);
-
-  // useEffect when state changes put key variables in localStorage so we can default to them next time
-  useEffect(() => {
-    localStorage.setItem("calcReps", reps);
-    localStorage.setItem("calcWeight", weight);
-    localStorage.setItem("calcIsMetric", isMetric);
-  }, [weight, reps, isMetric]);
+    // Update state if query is now different to state values
+    // This could be on first load
+    // Or could be if user clicks back/forward browser button
+    if (initReps !== reps) setReps(initReps);
+    if (initWeight !== weight) setWeight(initWeight);
+    if (initIsMetric !== isMetric) setIsMetric(initIsMetric);
+  }, [router.query]);
 
   const handleRepsSliderChange = (value) => {
     // console.log(`reps change: ${value[0]}`);
@@ -89,6 +79,28 @@ const E1RMCalculator = () => {
     setWeight(newWeight);
   };
 
+  // When user lets go of weight slider, update the URL params
+  // onCommit means we won't flood the browser with URL changes and get a working back button
+  const handleWeightSliderCommit = (value) => {
+    const newWeight = value;
+
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, weight: newWeight },
+    });
+  };
+
+  // When user lets go of reps slider, update the URL params
+  // onCommit means we won't flood the browser with URL changes and get a working back button
+  const handleRepsSliderCommit = (value) => {
+    const newReps = value;
+
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, reps: newReps },
+    });
+  };
+
   const handleEntryWeightChange = (e) => {
     const input = e.target.value;
     //FIXME: do any error checking? Check for negative?
@@ -96,15 +108,25 @@ const E1RMCalculator = () => {
   };
 
   const toggleIsMetric = (isMetric) => {
+    let newWeight;
+
     if (!isMetric) {
       // Going from kg to lb
-      setWeight(Math.round(weight * 2.2046));
+      newWeight = Math.round(weight * 2.2046);
       setIsMetric(false);
     } else {
       // Going from lb to kg
-      setWeight(Math.round(weight / 2.2046));
+      newWeight = Math.round(weight / 2.2046);
       setIsMetric(true);
     }
+
+    setWeight(newWeight);
+
+    // Update the browser URL instantly
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, weight: newWeight, isMetric: isMetric },
+    });
   };
 
   return (
@@ -128,7 +150,7 @@ const E1RMCalculator = () => {
       <div className="flex flex-col sm:flex-row mt-4 mr-2">
         <div className="w-[5rem]">Reps:</div>
         <div className="flex-grow">
-          <Reps reps={[reps]} onChange={handleRepsSliderChange} />
+          <Reps reps={[reps]} onChange={handleRepsSliderChange} onCommit={handleRepsSliderCommit} />
         </div>
         <div className="w-[5rem] ml-2 md:ml-8">
           <b>{reps}</b>
@@ -137,7 +159,12 @@ const E1RMCalculator = () => {
       <div className="flex flex-col sm:flex-row mt-4 mr-2">
         <div className="w-[5rem]">Weight:</div>
         <div className="flex-grow">
-          <Weight weight={[weight]} onChange={handleWeightSliderChange} isMetric={isMetric} />
+          <Weight
+            weight={[weight]}
+            onChange={handleWeightSliderChange}
+            isMetric={isMetric}
+            onCommit={handleWeightSliderCommit}
+          />
         </div>
         <div className="w-[5rem] ml-2 md:ml-8">
           <div className="flex gap-1">
@@ -230,23 +257,23 @@ const E1RMCalculator = () => {
 };
 
 // Reps input component
-const Reps = ({ reps, onChange }) => {
+const Reps = ({ reps, onChange, onCommit }) => {
   return (
     <div>
-      <CalcSlider aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} />
+      <CalcSlider aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} onCommit={onCommit} />
     </div>
   );
 };
 
 // Weight input component
-const Weight = ({ weight, onChange, isMetric }) => {
+const Weight = ({ weight, onChange, isMetric, onCommit }) => {
   let max = 600;
 
   if (isMetric) {
     max = 250;
   }
 
-  return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} />;
+  return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} onCommit={onCommit} />;
 };
 
 const UnitChooser = ({ isMetric, onSwitchChange }) => (

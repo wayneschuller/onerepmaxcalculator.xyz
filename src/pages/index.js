@@ -39,7 +39,7 @@ export default function Home() {
   );
 }
 
-let didInit = false;
+// let didInit = false;
 
 const E1RMCalculator = () => {
   const [reps, setReps] = useState(1);
@@ -102,9 +102,15 @@ const E1RMCalculator = () => {
   };
 
   const handleEntryWeightChange = (e) => {
-    const input = e.target.value;
+    const newWeight = e.target.value;
     //FIXME: do any error checking? Check for negative?
-    setWeight(input);
+    setWeight(newWeight);
+
+    // Update the browser URL instantly
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, weight: newWeight },
+    });
   };
 
   const toggleIsMetric = (isMetric) => {

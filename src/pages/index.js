@@ -42,15 +42,15 @@ export default function Home() {
 // let didInit = false;
 
 const E1RMCalculator = () => {
-  const [reps, setReps] = useState(1);
-  const [weight, setWeight] = useState(1);
-  const [isMetric, setIsMetric] = useState(true);
+  const [reps, setReps] = useState(5);
+  const [weight, setWeight] = useState(225);
+  const [isMetric, setIsMetric] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     // Get some initial values from URL parameters
-    const initReps = router?.query?.reps ?? 1;
-    const initWeight = router?.query?.weight ?? 1;
+    const initReps = router?.query?.reps ?? 5;
+    const initWeight = router?.query?.weight ?? 225;
     const initIsMetric = router?.query?.isMetric === "true" || false; // Default to pounds (isMetric should be boolean, not string)
 
     // Update state if query is now different to state values
@@ -193,8 +193,12 @@ const E1RMCalculator = () => {
       <div className="flex flex-1 justify-center mt-8 gap-2">
         <Card className="">
           <div className="">
+            <div className="text-xl flex justify-center">
+              Lift: {reps}@{weight}
+              {isMetric ? "kg" : "lb"}{" "}
+            </div>
             <div className="text-xl">Estimated One Rep Max: </div>
-            <div className="text-3xl font-bold flex flex-row justify-center items-center">
+            <div className="text-3xl font-bold flex flex-row justify-center ">
               {" " + estimateE1RM(reps, weight, "Brzycki")}
               {isMetric ? "kg" : "lb"}
             </div>

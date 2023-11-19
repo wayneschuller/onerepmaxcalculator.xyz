@@ -22,6 +22,7 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+// Shadcn stuff is below
 @layer base {
   :root {
     --background: 0 0% 100%;

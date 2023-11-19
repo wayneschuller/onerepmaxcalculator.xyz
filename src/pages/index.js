@@ -136,6 +136,41 @@ const E1RMCalculator = () => {
     });
   };
 
+  const handleCopyToClipboard = async () => {
+    const sentenceToCopy = `Lifting ${reps}@${weight}${
+      isMetric ? "kg" : "lb"
+    } indicates a one rep max of ${estimateE1RM(reps, weight, "Brzycki")}${
+      isMetric ? "kg" : "lb"
+    } using Brzycki algorithm.\n(Source: onerepmaxcalculator.org/?reps=${reps}&weight=${weight}&isMetric=${isMetric})`;
+
+    // Create a temporary textarea element
+    const textarea = document.createElement("textarea");
+    // Set the value of the textarea to the sentence you want to copy
+    textarea.value = sentenceToCopy;
+    // Append the textarea to the document
+    document.body.appendChild(textarea);
+    // Select the text in the textarea
+    textarea.select();
+    // Execute the 'copy' command to copy the selected text to the clipboard
+    document.execCommand("copy");
+    // Remove the temporary textarea
+    document.body.removeChild(textarea);
+    alert("Result copied to clipboard. Use ctrl-v to paste elsewhere.");
+
+    // This fails in React - but it's the new API
+    // if (navigator?.clipboard?.writeText) {
+    //   try {
+    //     await navigator.clipboard.writeText(sentenceToCopy);
+    //     alert("Result copied to clipboard. Use ctrl-v to paste elsewhere.");
+    //   } catch (error) {
+    //     console.error("Unable to copy to clipboard:", error);
+    //   }
+    // } else {
+    //   // Fallback for browsers that do not support the Clipboard API
+    //   console.warn("Clipboard API not supported. You may need to copy the text manually.");
+    // }
+  };
+
   return (
     <div className="h-min w-11/12 md:w-4/5  border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 ">
       <div className="flex flex-col md:flex-row gap-2 ">
@@ -205,7 +240,7 @@ const E1RMCalculator = () => {
             </div>
             <div className="flex justify-center items-center">(Brzycki formula)</div>
             <div className="flex justify-center mt-4">
-              <ShareButton />
+              <ShareButton onClick={handleCopyToClipboard} />
             </div>
           </div>
         </Card>
@@ -316,11 +351,11 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
   </div>
 );
 
-const ShareButton = () => {
+const ShareButton = ({ onClick }) => {
   return (
     <>
-      <Button variant="outline">
-        <div className="mr-2">Share</div>
+      <Button variant="outline" onClick={onClick}>
+        <div className="mr-2">Copy to clipboard</div>
         <ShareIcon />
       </Button>
     </>

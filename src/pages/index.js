@@ -226,7 +226,7 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 justify-center mt-8 gap-2">
+      <div className="flex flex-1 justify-center mt-8">
         <Card className="">
           <div className="">
             <div className="text-xl flex justify-center">
@@ -239,11 +239,11 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
             <div className="flex justify-center items-center">(Brzycki formula)</div>
-            <div className="flex justify-center mt-4">
-              <ShareButton onClick={handleCopyToClipboard} />
-            </div>
           </div>
         </Card>
+      </div>
+      <div className="flex justify-center mt-4">
+        <ShareButton onClick={handleCopyToClipboard} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
         <Card className="">
@@ -354,7 +354,7 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
 const ShareButton = ({ onClick }) => {
   return (
     <>
-      <Button variant="outline" onClick={onClick}>
+      <Button className="shadow-md shadow-slate-400" variant="outline" onClick={onClick}>
         <div className="mr-2">Copy to clipboard</div>
         <ShareIcon />
       </Button>

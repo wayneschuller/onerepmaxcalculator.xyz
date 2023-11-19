@@ -10,7 +10,7 @@ import { Card } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../components/estimateE1RM";
 import { useRouter } from "next/router";
-// import { Button } from "@radix-ui/button";
+import { Button } from "@/components/ui/button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -199,12 +199,14 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}{" "}
             </div>
             <div className="text-xl">Estimated One Rep Max: </div>
-            <div className="text-3xl font-bold flex flex-row justify-center ">
+            <div className="text-3xl font-bold flex justify-center ">
               {" " + estimateE1RM(reps, weight, "Brzycki")}
               {isMetric ? "kg" : "lb"}
             </div>
-            <div className="flex flex-row justify-center items-center">(Brzycki formula)</div>
-            <ShareButton />
+            <div className="flex justify-center items-center">(Brzycki formula)</div>
+            <div className="flex justify-center mt-4">
+              <ShareButton />
+            </div>
           </div>
         </Card>
       </div>
@@ -317,9 +319,10 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
 const ShareButton = () => {
   return (
     <>
-      <button>
-        Share <ShareIcon />
-      </button>
+      <Button variant="outline">
+        <div className="mr-2">Share</div>
+        <ShareIcon />
+      </Button>
     </>
   );
 };

@@ -184,7 +184,7 @@ const E1RMCalculator = () => {
         <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
         <DarkModeToggle />
       </div>
-      <h3 className="mt-2 flex-1 scroll-m-20 text-2xl tracking-tight">
+      <h3 className="mt-2 flex-1 scroll-m-20 text-xl md:text-2xl tracking-tight">
         Estimate your max single based on reps and weight (see{" "}
         <a
           href="https://en.wikipedia.org/wiki/One-repetition_maximum"
@@ -217,7 +217,7 @@ const E1RMCalculator = () => {
           <div className="flex gap-1">
             <b>
               <input
-                className="w-16 text-black"
+                className="w-16 bg-background text-foreground"
                 type="number"
                 min="1"
                 step="1"
@@ -359,7 +359,7 @@ const UnitChooser = ({ isMetric, onSwitchChange }) => (
 const ShareButton = ({ onClick }) => {
   return (
     <>
-      <Button className="shadow-md shadow-slate-400" variant="outline" onClick={onClick}>
+      <Button className="shadow-md bg-primary text-primary-foreground" variant="outline" onClick={onClick}>
         <div className="mr-2">Copy to clipboard</div>
         <ShareIcon />
       </Button>

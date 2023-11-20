@@ -11,6 +11,8 @@ import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../components/estimateE1RM";
 import { useRouter } from "next/router";
 import { Button } from "@/components/ui/button";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +36,9 @@ export default function Home() {
       <main
         className={`flex min-h-screen bg-gray-300 dark:bg-black flex-col items-center justify-between pt-4 ${inter.className}`}
       >
-        <E1RMCalculator />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <E1RMCalculator />
+        </ThemeProvider>
       </main>
     </div>
   );
@@ -172,12 +176,13 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-11/12 md:w-4/5 text-black dark:text-white border border-black rounded-lg bg-slate-50  dark:bg-slate-900  dark:border-white shadow-slate-500 dark:shadow-white shadow-lg p-4 ">
+    <div className="h-min w-11/12 md:w-4/5 border rounded-lg  p-4 ">
       <div className="flex flex-col md:flex-row gap-2 ">
         <h2 className="flex-1 text-3xl">
           <b>E1RM One Rep Max Calculator</b>
         </h2>
         <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
+        <DarkModeToggle />
       </div>
       <div className="mt-2 md:mt-0 flex-1">
         Estimate your max single based on reps and weight (see{" "}

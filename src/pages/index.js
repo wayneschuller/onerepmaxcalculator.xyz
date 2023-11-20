@@ -4,15 +4,15 @@
 
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
-import * as Switch from "@radix-ui/react-switch";
 import Head from "next/head";
 import { Card } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
-import { estimateE1RM } from "../components/estimateE1RM";
+import { estimateE1RM } from "../lib/estimateE1RM";
 import { useRouter } from "next/router";
 import { Button } from "@/components/ui/button";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { ThemeProvider } from "@/components/theme-provider";
+import { UnitChooser } from "../components/UnitChooser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -179,12 +179,14 @@ const E1RMCalculator = () => {
 
   return (
     <div className="h-min w-11/12 md:w-4/5 border-2 border-background rounded-lg p-4 md:p-6 bg-muted">
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-row gap-1 md:gap-2">
         <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator
         </h1>
-        <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
-        <DarkModeToggle />
+        <div className="flex flex-col md:flex-row ">
+          <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
+          <DarkModeToggle />
+        </div>
       </div>
       <h3 className="mt-2 flex-1 scroll-m-20 text-xl md:text-2xl tracking-tight">
         Estimate your max single based on reps and weight (see this{" "}
@@ -331,32 +333,6 @@ const Weight = ({ weight, onChange, isMetric, onCommit }) => {
 
   return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} onCommit={onCommit} />;
 };
-
-const UnitChooser = ({ isMetric, onSwitchChange }) => (
-  <div className="flex items-center align-middle">
-    <label className="leading-none text-sm pr-[10px]" aria-label="pounds">
-      Pounds
-    </label>
-    <Switch.Root
-      className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
-        isMetric ? "data-[state=checked]:bg-black" : ""
-      } outline-none cursor-default`}
-      id="unit type"
-      aria-label="unit type"
-      onCheckedChange={() => onSwitchChange(!isMetric)}
-      checked={isMetric}
-    >
-      <Switch.Thumb
-        className={`block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform ${
-          isMetric ? "data-[state=checked]:translate-x-[19px]" : ""
-        }`}
-      />
-    </Switch.Root>
-    <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode" aria-label="kilos">
-      Kilos
-    </label>
-  </div>
-);
 
 const ShareButton = ({ onClick }) => {
   return (

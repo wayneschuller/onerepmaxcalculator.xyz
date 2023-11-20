@@ -1,5 +1,5 @@
 /** @format */
-"use client";
+
 // Return a rounded 1 rep max
 // For theory see: https://en.wikipedia.org/wiki/One-repetition_maximum
 export function estimateE1RM(reps, weight, equation) {

@@ -180,15 +180,15 @@ const E1RMCalculator = () => {
   return (
     <div className="h-min w-11/12 md:w-4/5 border-2 border-background rounded-lg p-4 md:p-6 bg-muted">
       <div className="flex flex-row gap-1 md:gap-2">
-        <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
+        <h1 className="flex-1    scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator
         </h1>
-        <div className="flex flex-col md:flex-row ">
+        <div className="flex flex-col md:flex-row gap-1">
           <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
           <DarkModeToggle />
         </div>
       </div>
-      <h3 className="mt-2 flex-1 scroll-m-20 text-xl md:text-2xl tracking-tight">
+      <h3 className="flex-1 scroll-m-20 text-xl mt-2 md:text-2xl tracking-tight">
         Estimate your max single based on reps and weight (see this{" "}
         <a
           href="https://en.wikipedia.org/wiki/One-repetition_maximum"

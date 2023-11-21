@@ -300,7 +300,7 @@ const E1RMCalculator = () => {
             <div key={index} className="card">
               <Card className="hover:ring-1">
                 <CardHeader>
-                  <CardTitle className="text-muted-foreground">{formula}</CardTitle>
+                  <CardTitle className="text-muted-foreground text-xl">{formula}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="flex justify-center font-bold tracking-tight text-xl md:text-2xl">

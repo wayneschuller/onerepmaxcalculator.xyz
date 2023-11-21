@@ -16,6 +16,8 @@ import { e1rmFormulae } from "../lib/estimateE1RM";
 import { Input } from "@/components/ui/input";
 
 import { Slider } from "@/components/ui/slider";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,6 +45,7 @@ export default function Home() {
           <E1RMCalculator />
         </ThemeProvider>
       </main>
+      <Toaster />
     </div>
   );
 }
@@ -54,6 +57,7 @@ const E1RMCalculator = () => {
   const [weight, setWeight] = useState(225);
   const [isMetric, setIsMetric] = useState(false);
   const router = useRouter();
+  const { toast } = useToast();
 
   const defaultFormula = "Brzycki"; // One day we might make this configurable.
 
@@ -194,7 +198,10 @@ const E1RMCalculator = () => {
     document.execCommand("copy");
     // Remove the temporary textarea
     document.body.removeChild(textarea);
-    alert("Result copied to clipboard. Use ctrl-v to paste elsewhere."); // FIXME: use toast here
+
+    toast({
+      description: "Result copied to clipboard. Use ctrl-v to paste elsewhere.",
+    });
 
     // This fails in React - but it's the new API
     // if (navigator?.clipboard?.writeText) {

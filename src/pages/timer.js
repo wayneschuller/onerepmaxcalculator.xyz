@@ -13,7 +13,7 @@ const Timer = () => {
   const [time, setTime] = useState(1);
 
   return (
-    <div>
+    <>
       <Head>
         <title>{formatTime(time)} (Lifting Timer)</title>
         <meta name="description" content="Lifing Set Timer App" />
@@ -26,13 +26,12 @@ const Timer = () => {
         </h1>
         <Stopwatch time={time} setTime={setTime} />
       </main>
-    </div>
+    </>
   );
 };
-
 export default Timer;
 
-const Stopwatch = ({ time, setTime }) => {
+function Stopwatch({ time, setTime }) {
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -89,7 +88,7 @@ const Stopwatch = ({ time, setTime }) => {
       </div>
     </div>
   );
-};
+}
 
 const formatTime = (totalSeconds) => {
   // const totalSeconds = Math.floor(milliseconds / 1000);

@@ -3,7 +3,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
 import Head from "next/head";
 import { estimateE1RM } from "../lib/estimateE1RM";
 import { useRouter } from "next/router";
@@ -18,8 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const title = "E1RM One Rep Max Calculator";
@@ -38,9 +35,7 @@ export default function Home() {
 
         <link rel="canonical" href="https://www.onerepmaxcalculator.xyz/" />
       </Head>
-      <main
-        className={`flex min-h-screen bg-white dark:bg-black flex-col items-center justify-between pt-4 ${inter.className}`}
-      >
+      <main className={`flex justify-center`}>
         <E1RMCalculator />
       </main>
       <Toaster />
@@ -235,7 +230,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-11/12 md:w-4/5 border-2 border-background bg-blend-lighten bg-gray-100 dark:bg-slate-900  rounded-lg p-4 md:p-6 bg-muted">
+    <div className="w-11/12 md:w-4/5 border-2 border-background bg-blend-lighten bg-gray-100 dark:bg-slate-900 rounded-lg p-4 md:p-6 bg-muted">
       <div className="flex flex-row gap-1 md:gap-2">
         <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator

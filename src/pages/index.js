@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../lib/estimateE1RM";
 import { useRouter } from "next/router";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { UnitChooser } from "../components/UnitChooser";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { e1rmFormulae } from "../lib/estimateE1RM";
+
+import { Slider } from "@/components/ui/slider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -215,23 +216,31 @@ const E1RMCalculator = () => {
         </a>{" "}
         for the theory)
       </h3>
-      <div className="flex flex-col sm:flex-row mt-4 mr-2">
+      <div className="flex flex-col sm:flex-row mt-4 mr-2 items-center">
         <div className="w-[5rem]">Reps:</div>
         <div className="flex-grow">
-          <Reps reps={[reps]} onChange={handleRepsSliderChange} onCommit={handleRepsSliderCommit} />
+          <Slider
+            value={[reps]}
+            min={1}
+            max={20}
+            step={1}
+            onValueChange={handleRepsSliderChange}
+            onValueCommit={handleRepsSliderCommit}
+          />
         </div>
         <div className="w-[5rem] ml-2 md:ml-8">
           <b>{reps}</b>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row mt-4 mr-2">
+      <div className="flex flex-col sm:flex-row mt-4 mr-2 items-center">
         <div className="w-[5rem]">Weight:</div>
         <div className="flex-grow">
-          <Weight
-            weight={[weight]}
-            onChange={handleWeightSliderChange}
-            isMetric={isMetric}
-            onCommit={handleWeightSliderCommit}
+          <Slider
+            value={[weight]}
+            min={1}
+            max={isMetric ? 250 : 600}
+            onValueChange={handleWeightSliderChange}
+            onValueCommit={handleWeightSliderCommit}
           />
         </div>
         <div className="w-[5rem] ml-2 md:ml-8">
@@ -294,26 +303,6 @@ const E1RMCalculator = () => {
       </div>
     </div>
   );
-};
-
-// Reps input component
-const Reps = ({ reps, onChange, onCommit }) => {
-  return (
-    <div>
-      <CalcSlider aria-label="Reps" value={reps} max="20" min={1} onChange={onChange} onCommit={onCommit} />
-    </div>
-  );
-};
-
-// Weight input component
-const Weight = ({ weight, onChange, isMetric, onCommit }) => {
-  let max = 600;
-
-  if (isMetric) {
-    max = 250;
-  }
-
-  return <CalcSlider aria-label="Weight" value={weight} max={max} min={1} onChange={onChange} onCommit={onCommit} />;
 };
 
 const ShareButton = ({ onClick }) => {

@@ -122,9 +122,9 @@ const E1RMCalculator = () => {
     });
   };
 
-  const handleEntryWeightChange = (e) => {
-    const newWeight = e.target.value;
-    //FIXME: do any error checking? Check for negative?
+  const handleEntryWeightChange = (event) => {
+    const newWeight = event.target.value;
+
     setWeight(newWeight);
 
     // Update the browser URL instantly
@@ -132,6 +132,20 @@ const E1RMCalculator = () => {
       pathname: router.pathname,
       query: { ...router.query, weight: newWeight },
     });
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      // Defocus the input by removing focus
+      event.target.blur();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      // Defocus the input by removing focus
+      event.target.blur();
+    }
   };
 
   const toggleIsMetric = (isMetric) => {
@@ -254,6 +268,8 @@ const E1RMCalculator = () => {
                 id="weightInput"
                 value={weight}
                 onChange={handleEntryWeightChange}
+                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
               />
             </b>
             {isMetric ? "kg" : "lb"}

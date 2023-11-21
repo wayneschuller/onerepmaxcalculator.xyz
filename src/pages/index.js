@@ -45,7 +45,7 @@ export default function Home() {
   );
 }
 
-// let didInit = false;
+let didInit = false;
 
 const E1RMCalculator = () => {
   const [reps, setReps] = useState(5);
@@ -54,6 +54,17 @@ const E1RMCalculator = () => {
   const router = useRouter();
 
   const defaultFormula = "Brzycki"; // One day we might make this configurable.
+
+  // useEffect on first init get defaults from localStorage
+  useEffect(() => {
+    if (!didInit) {
+      didInit = true;
+
+      let initIsMetric = localStorage.getItem("calcIsMetric");
+      initIsMetric = initIsMetric === "true"; // boolean is true if string is "true" otherwise false
+      setIsMetric(initIsMetric);
+    }
+  }, []);
 
   useEffect(() => {
     // Get some initial values from URL parameters
@@ -141,6 +152,9 @@ const E1RMCalculator = () => {
       pathname: router.pathname,
       query: { ...router.query, weight: newWeight, isMetric: isMetric },
     });
+
+    // Save in localStorage for this browser device
+    localStorage.setItem("calcIsMetric", isMetric);
   };
 
   const handleCopyToClipboard = async () => {

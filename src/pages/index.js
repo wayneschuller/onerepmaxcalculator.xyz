@@ -235,7 +235,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="w-11/12 rounded-lg border-2 border-background bg-muted p-4 md:w-4/5 md:p-6">
+    <div className="w-11/12 rounded-xl border-2 border-background bg-muted/50 p-4 md:w-4/5 md:p-6">
       <div className="flex flex-row gap-1 md:gap-2">
         <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator
@@ -325,7 +325,7 @@ const E1RMCalculator = () => {
               {reps}@{weight}
               {isMetric ? "kg" : "lb"}
             </div>
-            <div className="text-4xl font-bold tracking-tight md:text-5xl">
+            <div className="text-center text-4xl font-bold tracking-tight md:text-5xl">
               {estimateE1RM(reps, weight, defaultFormula)}
               {isMetric ? "kg" : "lb"}
             </div>
@@ -340,7 +340,7 @@ const E1RMCalculator = () => {
       </div>
 
       {/* Grid of other formulae cards */}
-      <div className="mt-4 grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-6">
+      <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {e1rmFormulae.map((formula, index) =>
           formula === defaultFormula ? null : (
             <div key={index} className="card">

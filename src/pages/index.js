@@ -67,8 +67,6 @@ const E1RMCalculator = () => {
 
   useEffect(() => {
     // Get some initial values from URL parameters
-    console.log(router.query);
-
     const initReps = router?.query?.reps ?? 5;
     const initWeight = router?.query?.weight ?? 225;
 

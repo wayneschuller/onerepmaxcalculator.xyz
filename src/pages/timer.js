@@ -20,8 +20,10 @@ const Timer = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={`flex flex-col items-center justify-between pt-4 ${inter.className}`}>
-        <h1 className="text-center flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
+      <main
+        className={`flex flex-col items-center justify-between pt-4 ${inter.className}`}
+      >
+        <h1 className="flex-1 scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl ">
           Lifting Set Timer
         </h1>
         <Stopwatch time={time} setTime={setTime} />
@@ -62,27 +64,27 @@ function Stopwatch({ time, setTime }) {
 
   return (
     <>
-      <Card className="my-2 md:my-5 p-4 md:p-10 ring-4 bg-muted">
-        <div className="text-7xl md:text-9xl lg:text-[15rem] 2xl:text-[25rem] font-bold font-mono">
+      <Card className="my-2 bg-muted p-4 ring-4 md:my-5 md:p-10">
+        <div className="font-mono text-7xl font-bold md:text-9xl lg:text-[15rem] 2xl:text-[25rem]">
           {formatTime(time)}
         </div>
       </Card>
       <Button
         // className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded"
-        className="text-xl md:text-3xl md:px-6 md:py-8 lg:text-6xl xl:text-9xl xl:px-10 xl:py-20"
+        className="text-xl md:px-6 md:py-8 md:text-3xl lg:text-6xl xl:px-10 xl:py-20 xl:text-9xl"
         onClick={handleRestart}
       >
         Restart
       </Button>
       <div className="mt-4">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded"
+          className="mx-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           onClick={handleStartStop}
         >
           {isRunning ? "Stop" : "Start"}
         </button>
         <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded"
+          className="mx-2 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
           onClick={handleReset}
         >
           Reset

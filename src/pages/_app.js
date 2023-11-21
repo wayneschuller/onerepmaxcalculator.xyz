@@ -11,7 +11,12 @@ const inter = Inter({ subsets: ["latin"] });
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <main className={`min-h-screen bg-background ${inter.className}`}>
           <Layout>
             <Component {...pageProps} />

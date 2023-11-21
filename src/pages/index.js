@@ -10,7 +10,14 @@ import { Button } from "@/components/ui/button";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { UnitChooser } from "../components/UnitChooser";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { e1rmFormulae } from "../lib/estimateE1RM";
 import { Input } from "@/components/ui/input";
 
@@ -35,7 +42,7 @@ export default function Home() {
 
         <link rel="canonical" href="https://www.onerepmaxcalculator.xyz/" />
       </Head>
-      <main className={`flex justify-center`}>
+      <main className={`flex justify-center `}>
         <E1RMCalculator />
       </main>
       <Toaster />
@@ -117,7 +124,7 @@ const E1RMCalculator = () => {
         query: { reps: reps, weight: newWeight, isMetric: isMetric },
       },
       undefined,
-      { scroll: false }
+      { scroll: false },
     );
   };
 
@@ -132,7 +139,7 @@ const E1RMCalculator = () => {
         query: { reps: newReps, weight: weight, isMetric: isMetric },
       },
       undefined,
-      { scroll: false }
+      { scroll: false },
     );
   };
 
@@ -228,20 +235,20 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="w-11/12 md:w-4/5 border-2 border-background rounded-lg p-4 md:p-6 bg-muted">
+    <div className="w-11/12 rounded-lg border-2 border-background bg-muted p-4 md:w-4/5 md:p-6">
       <div className="flex flex-row gap-1 md:gap-2">
         <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator
         </h1>
-        <div className="flex flex-col md:flex-row gap-1">
+        <div className="flex flex-col gap-1 md:flex-row">
           <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
         </div>
       </div>
-      <h3 className="flex-1 scroll-m-20 text-xl mt-2 md:text-2xl mb-10 md:mb-8 tracking-tight">
+      <h3 className="mb-10 mt-2 flex-1 scroll-m-20 text-xl tracking-tight md:mb-8 md:text-2xl">
         Estimate your max single based on reps and weight (see this{" "}
         <a
           href="https://en.wikipedia.org/wiki/One-repetition_maximum"
-          className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+          className="text-blue-600 underline visited:text-purple-600 hover:text-blue-800"
         >
           Wikipedia article
         </a>{" "}
@@ -249,8 +256,10 @@ const E1RMCalculator = () => {
       </h3>
 
       {/* Two main sliders */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-4 mt-4 items-center">
-        <div className="text-2xl md:hidden ml-2 justify-self-center">{reps} reps</div>
+      <div className="mt-4 grid grid-cols-1 items-center gap-6 md:grid-cols-6 md:gap-4">
+        <div className="ml-2 justify-self-center text-2xl md:hidden">
+          {reps} reps
+        </div>
         <Slider
           className="md:col-span-5"
           value={[reps]}
@@ -260,11 +269,11 @@ const E1RMCalculator = () => {
           onValueChange={handleRepsSliderChange}
           onValueCommit={handleRepsSliderCommit}
         />
-        <div className="hidden md:block text-lg md:w-[7rem] ml-2 justify-self-center md:justify-self-start">
+        <div className="ml-2 hidden justify-self-center text-lg md:block md:w-[7rem] md:justify-self-start">
           {reps} reps
         </div>
-        <div className="md:hidden w-[8rem] ml-2 mt-6 justify-self-center">
-          <div className="flex gap-1 text-2xl items-center">
+        <div className="ml-2 mt-6 w-[8rem] justify-self-center md:hidden">
+          <div className="flex items-center gap-1 text-2xl">
             <Input
               className="text-2xl"
               type="number"
@@ -287,8 +296,8 @@ const E1RMCalculator = () => {
           onValueChange={handleWeightSliderChange}
           onValueCommit={handleWeightSliderCommit}
         />
-        <div className="hidden md:block w-[7rem] ml-1 justify-self-center md:justify-self-start">
-          <div className="flex gap-1 items-center">
+        <div className="ml-1 hidden w-[7rem] justify-self-center md:block md:justify-self-start">
+          <div className="flex items-center gap-1">
             <Input
               className="text-lg"
               type="number"
@@ -306,7 +315,7 @@ const E1RMCalculator = () => {
       </div>
 
       {/* Center card */}
-      <div className="flex flex-1 justify-center mt-8 gap-4">
+      <div className="mt-8 flex flex-1 justify-center gap-4">
         <Card className="hover:ring-1">
           <CardHeader>
             <CardTitle>Estimated One Rep Max</CardTitle>
@@ -316,36 +325,40 @@ const E1RMCalculator = () => {
               {reps}@{weight}
               {isMetric ? "kg" : "lb"}
             </div>
-            <div className="text-4xl md:text-5xl tracking-tight font-bold">
+            <div className="text-4xl font-bold tracking-tight md:text-5xl">
               {estimateE1RM(reps, weight, defaultFormula)}
               {isMetric ? "kg" : "lb"}
             </div>
           </CardContent>
-          <CardFooter className="text-muted-foreground">Using {defaultFormula} formula</CardFooter>
+          <CardFooter className="text-muted-foreground">
+            Using {defaultFormula} formula
+          </CardFooter>
         </Card>
       </div>
-      <div className="flex justify-center mt-4">
+      <div className="mt-4 flex justify-center">
         <ShareButton onClick={handleCopyToClipboard} />
       </div>
 
       {/* Grid of other formulae cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  mt-4 gap-4">
+      <div className="mt-4 grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-6">
         {e1rmFormulae.map((formula, index) =>
           formula === defaultFormula ? null : (
             <div key={index} className="card">
               <Card className="hover:ring-1">
                 <CardHeader>
-                  <CardTitle className="text-muted-foreground text-xl">{formula}</CardTitle>
+                  <CardTitle className="text-xl text-muted-foreground">
+                    {formula}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-bold tracking-tight text-xl md:text-2xl">
+                  <p className="text-xl font-bold tracking-tight md:text-2xl">
                     {estimateE1RM(reps, weight, formula)}
                     {isMetric ? "kg" : "lb"}
                   </p>
                 </CardContent>
               </Card>
             </div>
-          )
+          ),
         )}
       </div>
     </div>
@@ -371,7 +384,7 @@ const ShareIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="h-6 w-6"
     >
       <path
         strokeLinecap="round"

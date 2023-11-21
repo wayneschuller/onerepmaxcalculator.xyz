@@ -10,8 +10,8 @@ export default function NavBar() {
 
   return (
     <>
-      <div className="flex flex-row ml-4 p-2">
-        <div className="flex flex-row flex-1 gap-4 ">
+      <div className="ml-4 flex flex-row p-2">
+        <div className="flex flex-1 flex-row gap-4 ">
           <Link href="/">Calculator</Link>
           <Link href="/timer">Timer</Link>
         </div>

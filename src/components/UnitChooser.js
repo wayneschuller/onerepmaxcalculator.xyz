@@ -20,7 +20,11 @@ import {
 
 export const UnitChooser = ({ isMetric, onSwitchChange }) => {
   return (
-    <Button variant="outline" size="icon" onClick={() => onSwitchChange(!isMetric)}>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => onSwitchChange(!isMetric)}
+    >
       {isMetric ? "kg" : "lb"}
     </Button>
   );
@@ -37,8 +41,12 @@ export const UnitChooser3 = ({ isMetric, onSwitchChange }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => onSwitchChange(!isMetric)}>Kilograms</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onSwitchChange(!isMetric)}>Pounds</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onSwitchChange(!isMetric)}>
+          Kilograms
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onSwitchChange(!isMetric)}>
+          Pounds
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -46,25 +54,29 @@ export const UnitChooser3 = ({ isMetric, onSwitchChange }) => {
 
 export const UnitChooser2 = ({ isMetric, onSwitchChange }) => (
   <div className="flex items-center align-middle">
-    <label className="leading-none text-sm pr-[10px]" aria-label="pounds">
+    <label className="pr-[10px] text-sm leading-none" aria-label="pounds">
       Pounds
     </label>
     <Switch.Root
-      className={`w-[42px] h-[25px] bg-black rounded-full relative shadow-[0_2px_10px] shadow-blackA4 focus:shadow-[0_0_0_2px] focus:shadow-black ${
+      className={`shadow-blackA4 relative h-[25px] w-[42px] rounded-full bg-black shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black ${
         isMetric ? "data-[state=checked]:bg-black" : ""
-      } outline-none cursor-default`}
+      } cursor-default outline-none`}
       id="unit type"
       aria-label="unit type"
       onCheckedChange={() => onSwitchChange(!isMetric)}
       checked={isMetric}
     >
       <Switch.Thumb
-        className={`block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform ${
+        className={`shadow-blackA4 block h-[21px] w-[21px] rounded-full bg-white shadow-[0_2px_2px] transition-transform duration-100 will-change-transform ${
           isMetric ? "data-[state=checked]:translate-x-[19px]" : ""
         }`}
       />
     </Switch.Root>
-    <label className="leading-none text-sm pl-[10px]" htmlFor="kilos-mode" aria-label="kilos">
+    <label
+      className="pl-[10px] text-sm leading-none"
+      htmlFor="kilos-mode"
+      aria-label="kilos"
+    >
       Kilos
     </label>
   </div>

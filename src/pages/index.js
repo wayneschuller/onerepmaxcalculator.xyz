@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import { WSCard } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../lib/estimateE1RM";
 import { useRouter } from "next/router";
@@ -13,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { UnitChooser } from "../components/UnitChooser";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { e1rmFormulae } from "../lib/estimateE1RM";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,6 +52,8 @@ const E1RMCalculator = () => {
   const [weight, setWeight] = useState(225);
   const [isMetric, setIsMetric] = useState(false);
   const router = useRouter();
+
+  const defaultFormula = "Brzycki"; // One day we might make this configurable.
 
   useEffect(() => {
     // Get some initial values from URL parameters
@@ -235,80 +238,45 @@ const E1RMCalculator = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 justify-center mt-8">
-        <WSCard className="">
-          <div className="">
-            <div className="text-xl flex justify-center">
-              Lift: {reps}@{weight}
-              {isMetric ? "kg" : "lb"}{" "}
-            </div>
-            <div className="text-xl">Estimated One Rep Max: </div>
-            <div className="text-3xl font-bold flex justify-center ">
-              {" " + estimateE1RM(reps, weight, "Brzycki")}
+      <div className="flex flex-1 justify-center mt-8 gap-4">
+        <Card className="hover:ring-1">
+          <CardHeader>
+            <CardTitle>Estimated One Rep Max</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-center">
+              {reps}@{weight}
               {isMetric ? "kg" : "lb"}
             </div>
-            <div className="flex justify-center text-muted-foreground items-center">(Brzycki formula)</div>
-          </div>
-        </WSCard>
+            <div className="text-4xl md:text-5xl tracking-tight font-bold flex justify-center ">
+              {estimateE1RM(reps, weight, defaultFormula)}
+              {isMetric ? "kg" : "lb"}
+            </div>
+          </CardContent>
+          <CardFooter className="text-muted-foreground">Using {defaultFormula} formula</CardFooter>
+        </Card>
       </div>
       <div className="flex justify-center mt-4">
         <ShareButton onClick={handleCopyToClipboard} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
-        <WSCard className="">
-          <div className="flex flex-col justify-center items-center">
-            Epley:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "Epley")}
-              {isMetric ? "kg" : "lb"}
+        {e1rmFormulae.map((formula, index) =>
+          formula === defaultFormula ? null : (
+            <div key={index} className="card">
+              <Card className="hover:ring-1">
+                <CardHeader>
+                  <CardTitle className="text-muted-foreground">{formula}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="flex justify-center font-bold tracking-tight text-xl md:text-2xl">
+                    {estimateE1RM(reps, weight, formula)}
+                    {isMetric ? "kg" : "lb"}
+                  </p>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </WSCard>
-        <WSCard>
-          <div className="flex flex-col justify-center items-center">
-            McGlothin:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "McGlothin")}
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </WSCard>
-        <WSCard>
-          <div className="flex flex-col justify-center items-center">
-            Lombardi:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "Lombardi")}
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </WSCard>
-        <WSCard>
-          <div className="flex flex-col justify-center items-center">
-            Mayhew et al.:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "Mayhew")}
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </WSCard>
-        <WSCard>
-          <div className="flex flex-col justify-center items-center">
-            O&apos;Conner et al.:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "OConner")}
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </WSCard>
-        <WSCard>
-          <div className="flex flex-col justify-center items-center">
-            Wathen:
-            <div className="font-bold">
-              {estimateE1RM(reps, weight, "Wathen")}
-              {isMetric ? "kg" : "lb"}
-            </div>
-          </div>
-        </WSCard>
+          )
+        )}
       </div>
     </div>
   );

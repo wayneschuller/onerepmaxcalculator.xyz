@@ -24,3 +24,5 @@ export function estimateE1RM(reps, weight, equation) {
       return Math.round(weight / (1.0278 - 0.0278 * reps));
   }
 }
+
+export const e1rmFormulae = ["Epley", "McGlothin", "Lombardi", "Mayhew", "OConner", "Wathan", "Brzycki"];

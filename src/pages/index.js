@@ -181,7 +181,7 @@ const E1RMCalculator = () => {
   };
 
   return (
-    <div className="h-min w-11/12 md:w-4/5 border-2 border-background bg-orange-100 dark:bg-orange-950 rounded-lg p-4 md:p-6 bg-muted">
+    <div className="h-min w-11/12 md:w-4/5 border-2 border-background bg-neutral-50 dark:bg-neutral-800  rounded-lg p-4 md:p-6 bg-muted">
       <div className="flex flex-row gap-1 md:gap-2">
         <h1 className="flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           E1RM One Rep Max Calculator

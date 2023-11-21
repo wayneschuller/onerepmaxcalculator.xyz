@@ -74,9 +74,20 @@ const E1RMCalculator = () => {
 
   useEffect(() => {
     // Get some initial values from URL parameters
+    console.log(router.query);
+
     const initReps = router?.query?.reps ?? 5;
     const initWeight = router?.query?.weight ?? 225;
-    const initIsMetric = router?.query?.isMetric === "true" || false; // Default to pounds (isMetric should be boolean, not string)
+
+    let initIsMetric;
+    if (router?.query?.isMetric === "false") {
+      initIsMetric = false;
+    } else if (router?.query?.isMetric === "true") {
+      initIsMetric = true;
+    } else {
+      // The URL has no guidance. So check localStorage then default to false (pounds)
+      initIsMetric = localStorage.getItem("calcIsMetric") === "true" || false;
+    }
 
     // Update state if query is now different to state values
     // This could be on first load

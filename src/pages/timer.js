@@ -20,7 +20,7 @@ const Timer = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={`flex bg-white dark:bg-black flex-col items-center justify-between pt-4 ${inter.className}`}>
+      <main className={`flex flex-col items-center justify-between pt-4 ${inter.className}`}>
         <h1 className="text-center flex-1 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
           Lifting Set Timer
         </h1>
@@ -61,8 +61,8 @@ function Stopwatch({ time, setTime }) {
   };
 
   return (
-    <div className="text-center">
-      <Card className="my-2 md:my-5 p-4 md:p-10 ring-4">
+    <>
+      <Card className="my-2 md:my-5 p-4 md:p-10 ring-4 bg-muted">
         <div className="text-7xl md:text-9xl lg:text-[15rem] 2xl:text-[25rem] font-bold font-mono">
           {formatTime(time)}
         </div>
@@ -88,7 +88,7 @@ function Stopwatch({ time, setTime }) {
           Reset
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

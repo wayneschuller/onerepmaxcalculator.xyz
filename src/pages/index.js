@@ -13,6 +13,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { UnitChooser } from "../components/UnitChooser";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { e1rmFormulae } from "../lib/estimateE1RM";
+import { Input } from "@/components/ui/input";
 
 import { Slider } from "@/components/ui/slider";
 
@@ -228,7 +229,7 @@ const E1RMCalculator = () => {
             onValueCommit={handleRepsSliderCommit}
           />
         </div>
-        <div className="w-[5rem] ml-2 md:ml-8">
+        <div className="w-[7rem] ml-2 md:ml-8">
           <b>{reps}</b>
         </div>
       </div>
@@ -243,16 +244,14 @@ const E1RMCalculator = () => {
             onValueCommit={handleWeightSliderCommit}
           />
         </div>
-        <div className="w-[5rem] ml-2 md:ml-8">
-          <div className="flex gap-1">
+        <div className="w-[7rem] ml-2 md:ml-8">
+          <div className="flex gap-1 items-center">
             <b>
-              <input
-                className="w-16 bg-background text-foreground"
+              <Input
                 type="number"
                 min="1"
                 step="1"
                 id="weightInput"
-                aria-labelledby="weight"
                 value={weight}
                 onChange={handleEntryWeightChange}
               />

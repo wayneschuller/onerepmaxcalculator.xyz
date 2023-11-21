@@ -63,16 +63,18 @@ function Stopwatch({ time, setTime }) {
   return (
     <div className="text-center">
       <Card className="my-2 md:my-5 p-4 md:p-10 ring-4">
-        <div className="text-7xl md:text-9xl font-bold font-mono">{formatTime(time)}</div>
+        <div className="text-7xl md:text-9xl lg:text-[15rem] 2xl:text-[25rem] font-bold font-mono">
+          {formatTime(time)}
+        </div>
       </Card>
       <Button
         // className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded"
-        className="text-xl md:text-5xl p-4 md:px-6 md:py-8 m-4"
+        className="text-xl md:text-3xl md:px-6 md:py-8 lg:text-6xl xl:text-9xl xl:px-10 xl:py-20"
         onClick={handleRestart}
       >
         Restart
       </Button>
-      <div className="">
+      <div className="mt-4">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded"
           onClick={handleStartStop}

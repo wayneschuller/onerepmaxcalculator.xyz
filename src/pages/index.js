@@ -105,25 +105,33 @@ const E1RMCalculator = () => {
   };
 
   // When user lets go of weight slider, update the URL params
-  // onCommit means we won't flood the browser with URL changes and get a working back button
+  // onCommit means we won't flood the browser with URL changes
   const handleWeightSliderCommit = (value) => {
     const newWeight = value;
 
-    router.push({
-      pathname: router.pathname,
-      query: { ...router.query, weight: newWeight },
-    });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, weight: newWeight },
+      },
+      undefined,
+      { scroll: false }
+    );
   };
 
   // When user lets go of reps slider, update the URL params
-  // onCommit means we won't flood the browser with URL changes and get a working back button
+  // onCommit means we won't flood the browser with URL changes
   const handleRepsSliderCommit = (value) => {
     const newReps = value;
 
-    router.push({
-      pathname: router.pathname,
-      query: { ...router.query, reps: newReps },
-    });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, reps: newReps },
+      },
+      undefined,
+      { scroll: false }
+    );
   };
 
   const handleEntryWeightChange = (event) => {

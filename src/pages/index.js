@@ -41,9 +41,7 @@ export default function Home() {
       <main
         className={`flex min-h-screen bg-white dark:bg-black flex-col items-center justify-between pt-4 ${inter.className}`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <E1RMCalculator />
-        </ThemeProvider>
+        <E1RMCalculator />
       </main>
       <Toaster />
     </div>

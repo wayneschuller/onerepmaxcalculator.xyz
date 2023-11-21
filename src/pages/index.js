@@ -248,7 +248,8 @@ const E1RMCalculator = () => {
       </h3>
 
       {/* Two main sliders */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mt-4 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-4 mt-4 items-center">
+        <div className="text-2xl md:hidden ml-2 justify-self-center">{reps} reps</div>
         <Slider
           className="md:col-span-5"
           value={[reps]}
@@ -258,7 +259,25 @@ const E1RMCalculator = () => {
           onValueChange={handleRepsSliderChange}
           onValueCommit={handleRepsSliderCommit}
         />
-        <div className="text-lg md:w-[7rem] ml-2 justify-self-center md:justify-self-start">{reps} reps</div>
+        <div className="hidden md:block text-lg md:w-[7rem] ml-2 justify-self-center md:justify-self-start">
+          {reps} reps
+        </div>
+        <div className="md:hidden w-[8rem] ml-2 mt-6 justify-self-center">
+          <div className="flex gap-1 text-2xl items-center">
+            <Input
+              className="text-2xl"
+              type="number"
+              min="1"
+              step="1"
+              id="weightInput"
+              value={weight}
+              onChange={handleEntryWeightChange}
+              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
+            />
+            {isMetric ? "kg" : "lb"}
+          </div>
+        </div>
         <Slider
           className="md:col-span-5"
           value={[weight]}
@@ -267,7 +286,7 @@ const E1RMCalculator = () => {
           onValueChange={handleWeightSliderChange}
           onValueCommit={handleWeightSliderCommit}
         />
-        <div className="w-[7rem] ml-2 justify-self-center md:justify-self-start">
+        <div className="hidden md:block w-[7rem] ml-1 justify-self-center md:justify-self-start">
           <div className="flex gap-1 items-center">
             <Input
               className="text-lg"

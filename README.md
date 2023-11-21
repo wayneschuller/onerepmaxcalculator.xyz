@@ -7,14 +7,14 @@ A React based one rep max calculator web app.
 Available publicly at https://onerepmaxcalculator.xyz
 
 Features:
-
 - give the user the results from different expert formulae from the strength research
 - fast and thick finger friendly UI that works smoothly during a gym session
 - responsive design and instant results without needing a submit button
-- use cookies to remember previous settings
+- share button for sharing results on web forums
+
 
 ## Example screenshot:
+![image](https://github.com/wayneschuller/onerepmaxcalculator.xyz/assets/1592295/5a0e3727-0b2d-47cd-bb0f-73c5db9b4354)
 
-![one_rep_max_calculator](https://user-images.githubusercontent.com/1592295/197071984-3dd7d74a-8b4c-448a-9a73-a134060ad49c.jpg)
 
-Codebase uses Next.js 14.x
+Codebase uses Next.js 14.x, Tailwind, ShadcnUI

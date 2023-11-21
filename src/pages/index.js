@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import { Card } from "../components/Card";
+import { WSCard } from "../components/Card";
 import { CalcSlider } from "../components/CalcSlider";
 import { estimateE1RM } from "../lib/estimateE1RM";
 import { useRouter } from "next/router";
@@ -236,7 +236,7 @@ const E1RMCalculator = () => {
         </div>
       </div>
       <div className="flex flex-1 justify-center mt-8">
-        <Card className="">
+        <WSCard className="">
           <div className="">
             <div className="text-xl flex justify-center">
               Lift: {reps}@{weight}
@@ -249,13 +249,13 @@ const E1RMCalculator = () => {
             </div>
             <div className="flex justify-center text-muted-foreground items-center">(Brzycki formula)</div>
           </div>
-        </Card>
+        </WSCard>
       </div>
       <div className="flex justify-center mt-4">
         <ShareButton onClick={handleCopyToClipboard} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
-        <Card className="">
+        <WSCard className="">
           <div className="flex flex-col justify-center items-center">
             Epley:
             <div className="font-bold">
@@ -263,8 +263,8 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
-        <Card>
+        </WSCard>
+        <WSCard>
           <div className="flex flex-col justify-center items-center">
             McGlothin:
             <div className="font-bold">
@@ -272,8 +272,8 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
-        <Card>
+        </WSCard>
+        <WSCard>
           <div className="flex flex-col justify-center items-center">
             Lombardi:
             <div className="font-bold">
@@ -281,8 +281,8 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
-        <Card>
+        </WSCard>
+        <WSCard>
           <div className="flex flex-col justify-center items-center">
             Mayhew et al.:
             <div className="font-bold">
@@ -290,8 +290,8 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
-        <Card>
+        </WSCard>
+        <WSCard>
           <div className="flex flex-col justify-center items-center">
             O&apos;Conner et al.:
             <div className="font-bold">
@@ -299,8 +299,8 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
-        <Card>
+        </WSCard>
+        <WSCard>
           <div className="flex flex-col justify-center items-center">
             Wathen:
             <div className="font-bold">
@@ -308,7 +308,7 @@ const E1RMCalculator = () => {
               {isMetric ? "kg" : "lb"}
             </div>
           </div>
-        </Card>
+        </WSCard>
       </div>
     </div>
   );

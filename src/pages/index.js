@@ -123,7 +123,7 @@ const E1RMCalculator = () => {
     router.push(
       {
         pathname: router.pathname,
-        query: { ...router.query, weight: newWeight },
+        query: { reps: reps, weight: newWeight, isMetric: isMetric },
       },
       undefined,
       { scroll: false }
@@ -138,7 +138,7 @@ const E1RMCalculator = () => {
     router.push(
       {
         pathname: router.pathname,
-        query: { ...router.query, reps: newReps },
+        query: { reps: newReps, weight: weight, isMetric: isMetric },
       },
       undefined,
       { scroll: false }
@@ -153,7 +153,7 @@ const E1RMCalculator = () => {
     // Update the browser URL instantly
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, weight: newWeight },
+      query: { reps: reps, weight: newWeight, isMetric: isMetric },
     });
   };
 
@@ -189,7 +189,7 @@ const E1RMCalculator = () => {
     // Update the browser URL instantly
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, weight: newWeight, isMetric: isMetric },
+      query: { reps: reps, weight: newWeight, isMetric: isMetric },
     });
 
     // Save in localStorage for this browser device

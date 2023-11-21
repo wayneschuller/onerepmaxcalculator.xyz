@@ -221,7 +221,7 @@ const E1RMCalculator = () => {
           <DarkModeToggle />
         </div>
       </div>
-      <h3 className="flex-1 scroll-m-20 text-xl mt-2 md:text-2xl tracking-tight">
+      <h3 className="flex-1 scroll-m-20 text-xl mt-2 md:text-2xl mb-10 md:mb-8 tracking-tight">
         Estimate your max single based on reps and weight (see this{" "}
         <a
           href="https://en.wikipedia.org/wiki/One-repetition_maximum"
@@ -231,51 +231,46 @@ const E1RMCalculator = () => {
         </a>{" "}
         for the theory)
       </h3>
-      <div className="flex flex-col sm:flex-row mt-4 mr-2 items-center">
-        <div className="w-[5rem]">Reps:</div>
-        <div className="flex-grow">
-          <Slider
-            value={[reps]}
-            min={1}
-            max={20}
-            step={1}
-            onValueChange={handleRepsSliderChange}
-            onValueCommit={handleRepsSliderCommit}
-          />
-        </div>
-        <div className="w-[7rem] ml-2 md:ml-8">
-          <b>{reps}</b>
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row mt-4 mr-2 items-center">
-        <div className="w-[5rem]">Weight:</div>
-        <div className="flex-grow">
-          <Slider
-            value={[weight]}
-            min={1}
-            max={isMetric ? 250 : 600}
-            onValueChange={handleWeightSliderChange}
-            onValueCommit={handleWeightSliderCommit}
-          />
-        </div>
-        <div className="w-[7rem] ml-2 md:ml-8">
+
+      {/* Two main sliders */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mt-4 items-center">
+        <Slider
+          className="md:col-span-5"
+          value={[reps]}
+          min={1}
+          max={20}
+          step={1}
+          onValueChange={handleRepsSliderChange}
+          onValueCommit={handleRepsSliderCommit}
+        />
+        <div className="text-lg md:w-[7rem] ml-2 justify-self-center md:justify-self-start">{reps} reps</div>
+        <Slider
+          className="md:col-span-5"
+          value={[weight]}
+          min={1}
+          max={isMetric ? 250 : 600}
+          onValueChange={handleWeightSliderChange}
+          onValueCommit={handleWeightSliderCommit}
+        />
+        <div className="w-[7rem] ml-2 justify-self-center md:justify-self-start">
           <div className="flex gap-1 items-center">
-            <b>
-              <Input
-                type="number"
-                min="1"
-                step="1"
-                id="weightInput"
-                value={weight}
-                onChange={handleEntryWeightChange}
-                onKeyPress={handleKeyPress}
-                onKeyDown={handleKeyDown}
-              />
-            </b>
+            <Input
+              className="text-lg"
+              type="number"
+              min="1"
+              step="1"
+              id="weightInput"
+              value={weight}
+              onChange={handleEntryWeightChange}
+              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
+            />
             {isMetric ? "kg" : "lb"}
           </div>
         </div>
       </div>
+
+      {/* Center card */}
       <div className="flex flex-1 justify-center mt-8 gap-4">
         <Card className="hover:ring-1">
           <CardHeader>
@@ -297,6 +292,8 @@ const E1RMCalculator = () => {
       <div className="flex justify-center mt-4">
         <ShareButton onClick={handleCopyToClipboard} />
       </div>
+
+      {/* Grid of other formulae cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
         {e1rmFormulae.map((formula, index) =>
           formula === defaultFormula ? null : (

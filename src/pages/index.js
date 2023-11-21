@@ -208,7 +208,7 @@ const E1RMCalculator = () => {
     document.body.removeChild(textarea);
 
     toast({
-      description: "Result copied to clipboard. Use ctrl-v to paste elsewhere.",
+      description: "Result copied to clipboard.",
     });
 
     // This fails in React - but it's the new API

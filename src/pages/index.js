@@ -237,7 +237,6 @@ const E1RMCalculator = () => {
         </h1>
         <div className="flex flex-col md:flex-row gap-1">
           <UnitChooser isMetric={isMetric} onSwitchChange={toggleIsMetric} />
-          <DarkModeToggle />
         </div>
       </div>
       <h3 className="flex-1 scroll-m-20 text-xl mt-2 md:text-2xl mb-10 md:mb-8 tracking-tight">

@@ -312,11 +312,11 @@ const E1RMCalculator = () => {
             <CardTitle>Estimated One Rep Max</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-center">
+            <div className="text-center">
               {reps}@{weight}
               {isMetric ? "kg" : "lb"}
             </div>
-            <div className="text-4xl md:text-5xl tracking-tight font-bold flex justify-center ">
+            <div className="text-4xl md:text-5xl tracking-tight font-bold">
               {estimateE1RM(reps, weight, defaultFormula)}
               {isMetric ? "kg" : "lb"}
             </div>
@@ -329,7 +329,7 @@ const E1RMCalculator = () => {
       </div>
 
       {/* Grid of other formulae cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center mt-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  mt-4 gap-4">
         {e1rmFormulae.map((formula, index) =>
           formula === defaultFormula ? null : (
             <div key={index} className="card">
@@ -338,7 +338,7 @@ const E1RMCalculator = () => {
                   <CardTitle className="text-muted-foreground text-xl">{formula}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="flex justify-center font-bold tracking-tight text-xl md:text-2xl">
+                  <p className="font-bold tracking-tight text-xl md:text-2xl">
                     {estimateE1RM(reps, weight, formula)}
                     {isMetric ? "kg" : "lb"}
                   </p>

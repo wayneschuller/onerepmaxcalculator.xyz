@@ -64,19 +64,19 @@ function Stopwatch({ time, setTime }) {
 
   return (
     <>
-      <Card className="my-2 bg-muted p-4 ring-4 md:my-5 md:p-10">
+      <Card className="my-2 bg-muted p-4 ring-4 hover:ring-blue-800 md:my-5 md:p-10">
         <div className="font-mono text-7xl font-bold md:text-9xl lg:text-[15rem] 2xl:text-[25rem]">
           {formatTime(time)}
         </div>
       </Card>
       <Button
         // className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded"
-        className="text-xl tracking-tight md:px-6 md:py-8 md:text-3xl lg:text-6xl xl:px-10 xl:py-20 xl:text-9xl"
+        className="my-2 text-xl tracking-tight hover:ring md:px-6 md:py-8 md:text-3xl lg:text-6xl xl:my-4 xl:px-10 xl:py-20 xl:text-9xl"
         onClick={handleRestart}
       >
         Restart
       </Button>
-      <div className="mt-4">
+      <div className="mt-2">
         <button
           className="mx-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           onClick={handleStartStop}

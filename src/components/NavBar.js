@@ -15,7 +15,7 @@ export default function NavBar() {
   return (
     <>
       <div className="ml-4 mr-2 flex">
-        <nav className="flex flex-1 items-center space-x-6 text-sm font-medium">
+        <nav className="flex flex-1 items-center space-x-2 text-sm font-medium md:space-x-6">
           <Link
             href="/"
             className={cn(

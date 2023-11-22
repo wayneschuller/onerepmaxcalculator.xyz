@@ -10,10 +10,12 @@ import { DarkModeToggle } from "@/components/DarkModeToggle";
 export default function NavBar() {
   const pathname = usePathname();
 
+  // {/* <div className="flex flex-1 flex-row gap-4 "> */}
+
   return (
     <>
-      <div className="ml-4 flex flex-row p-2">
-        <div className="flex flex-1 flex-row gap-4 ">
+      <div className="ml-4 mr-2 flex">
+        <nav className="flex flex-1 items-center space-x-6 text-sm font-medium">
           <Link
             href="/"
             className={cn(
@@ -21,7 +23,7 @@ export default function NavBar() {
               pathname === "/" ? "text-foreground" : "text-foreground/60",
             )}
           >
-            Calculator
+            One Rep Max Calculator
           </Link>
           <Link
             href="/timer"
@@ -30,10 +32,10 @@ export default function NavBar() {
               pathname === "/timer" ? "text-foreground" : "text-foreground/60",
             )}
           >
-            Timer
+            Lifting Set Timer
           </Link>
-        </div>
-        <div className="">
+        </nav>
+        <div className="p-2">
           <DarkModeToggle />
         </div>
       </div>

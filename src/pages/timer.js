@@ -71,7 +71,7 @@ function Stopwatch({ time, setTime }) {
       </Card>
       <Button
         // className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded"
-        className="text-xl md:px-6 md:py-8 md:text-3xl lg:text-6xl xl:px-10 xl:py-20 xl:text-9xl"
+        className="text-xl tracking-tight md:px-6 md:py-8 md:text-3xl lg:text-6xl xl:px-10 xl:py-20 xl:text-9xl"
         onClick={handleRestart}
       >
         Restart

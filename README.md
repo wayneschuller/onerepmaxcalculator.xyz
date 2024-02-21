@@ -4,7 +4,12 @@
 
 A React based one rep max calculator web app.
 
-Available publicly at https://onerepmaxcalculator.xyz
+Was available publicly at https://onerepmaxcalculator.xyz until Feb 2024.
+
+Now merged into Strength Journeys: https://www.strengthjourneys.xyz/calculator
+https://github.com/wayneschuller/strengthjourneys 
+
+--
 
 Features:
 - give the user the results from different expert formulae from the strength research
